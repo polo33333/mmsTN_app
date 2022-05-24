@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mms_1/configs/themes/app_colors.dart';
-import 'package:mms_1/helpers/report_helper.dart';
-import 'package:mms_1/helpers/revenue_helper.dart';
-import 'package:mms_1/provider/revenue_provider.dart';
+import '../../configs/themes/app_colors.dart';
+import '../../helpers/revenue_helper.dart';
+import '../../provider/revenue_provider.dart';
 import 'package:provider/provider.dart';
 
 class RevenuePage extends StatefulWidget {
@@ -12,14 +11,16 @@ class RevenuePage extends StatefulWidget {
 
 class _RevenuePageState extends State<RevenuePage> {
   GlobalKey<ScaffoldState> _globalKey = GlobalKey();
-  ScrollController _scrollController = ScrollController();
 
   final RevenueHelper _revenue = RevenueHelper();
 
   String _month = DateTime.now().month.toString();
   String _year = DateTime.now().year.toString();
+  final _yearCurr = DateTime.now().year;
 
-  List<String> _monthList = [
+  String selectedValue = DateTime.now().month.toString();
+
+  final List<String> _monthList = [
     '1',
     '2',
     '3',
@@ -33,40 +34,19 @@ class _RevenuePageState extends State<RevenuePage> {
     '11',
     '12'
   ];
-  List<String> _yearList = [
-    '2020',
-    '2021',
-    '2022',
-    '2023',
-    '2024',
-    '2025',
-    '2026',
-    '2027',
-    '2028',
-    '2029',
-    '2030',
-    '2031'
-  ];
 
-  _showSnackbar(String message, {Color bgColor}) {
-    _globalKey.currentState.showSnackBar(
-      SnackBar(
-        content: Text(message),
-        backgroundColor: bgColor ?? Colors.red,
-      ),
-    );
-  }
-
-  _hideSnackbar() {
-    _globalKey.currentState.hideCurrentSnackBar();
-  }
-
-
+  List<String> _yearList = [];
 
   @override
   void initState() {
     super.initState();
 
+    _yearList = [
+      (_yearCurr).toString(),
+      (_yearCurr - 1).toString(),
+      (_yearCurr - 2).toString(),
+      (_yearCurr - 3).toString(),
+    ];
   }
 
   @override
@@ -77,7 +57,7 @@ class _RevenuePageState extends State<RevenuePage> {
         appBar: AppBar(
           elevation: 0.1,
           backgroundColor: AppColors.blue_w500,
-          title: Text(
+          title: const Text(
             'Các khoản nộp - Tìm kiếm',
             style: TextStyle(
               color: Colors.white,
@@ -88,115 +68,109 @@ class _RevenuePageState extends State<RevenuePage> {
             ),
           ),
           centerTitle: true,
-          actions: <Widget>[],
+          actions: const <Widget>[],
         ),
         body: SingleChildScrollView(
             padding: const EdgeInsets.all(10),
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
                 Container(
-                  padding: EdgeInsets.fromLTRB(10.0, 2.0, 10.0, 2.0),
+                  padding: const EdgeInsets.fromLTRB(10.0, 2.0, 10.0, 2.0),
                   alignment: Alignment.centerLeft,
-                  child: Text(
+                  child: const Text(
                     "Tháng",
                     style: TextStyle(color: Colors.black54, fontSize: 14),
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.all(5.0),
+                  margin: const EdgeInsets.all(5.0),
                   decoration: BoxDecoration(
                       border: Border.all(color: Colors.grey),
                       borderRadius: BorderRadius.circular(5.0)),
                   child: DropdownButtonFormField<String>(
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.calendar_today),
-                    ),
-                    icon: Icon(
-                      Icons.arrow_drop_down,
-                      size: 20.09,
-                    ),
-                    hint: Text("Vui lòng chọn chợ..."),
-                    isExpanded: false,
-                    value: _month,
-                    items: _monthList.map((String val) {
-                      return new DropdownMenuItem<String>(
-                        value: val,
-                        child: new Text(val),
-                      );
-                    }).toList(),
+                      decoration: const InputDecoration(
+                        prefixIcon: Icon(Icons.calendar_today),
+                      ),
+                      icon: const Icon(
+                        Icons.arrow_drop_down,
+                        size: 20.09,
+                      ),
+                      isExpanded: false,
+                      value: _month,
+                      items: _monthList.map((String val) {
+                        return DropdownMenuItem<String>(
+                          value: val,
+                          child: Text(val),
+                        );
+                      }).toList(),
                       onChanged: (newVal) {
                         _month = newVal;
-                        this.setState(() {});
-                      }
-                  ),
+                        setState(() {});
+                      }),
                 ),
                 Container(
-                  padding: EdgeInsets.fromLTRB(10.0, 2.0, 10.0, 2.0),
+                  padding: const EdgeInsets.fromLTRB(10.0, 2.0, 10.0, 2.0),
                   alignment: Alignment.centerLeft,
-                  child: Text(
+                  child: const Text(
                     "Năm",
                     style: TextStyle(color: Colors.black54, fontSize: 14),
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.all(5.0),
+                  margin: const EdgeInsets.all(5.0),
                   decoration: BoxDecoration(
                       border: Border.all(color: Colors.grey),
                       borderRadius: BorderRadius.circular(5.0)),
                   child: DropdownButtonFormField<String>(
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         prefixIcon: Icon(Icons.calendar_today),
                       ),
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.arrow_drop_down,
                         size: 20.09,
                       ),
                       isExpanded: true,
                       value: _year,
                       items: _yearList.map((String val) {
-                        return new DropdownMenuItem<String>(
+                        return DropdownMenuItem<String>(
                           value: val,
-                          child: new Text(val),
+                          child: Text(val),
                         );
                       }).toList(),
                       onChanged: (newVal) {
                         _year = newVal;
-                        this.setState(() {});
+                        setState(() {});
                       }),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: double.infinity,
                   height: 20,
                 ),
                 Container(
                   width: double.infinity,
-                  margin: EdgeInsets.all(5.0),
+                  margin: const EdgeInsets.all(5.0),
                   height: 50,
                   child: ElevatedButton(
                       onPressed: () {
-                        _revenue
-                            .Search(int.parse(_month), int.parse(_year))
+                        _revenue.Search(int.parse(_month), int.parse(_year))
                             .then((result) {
-
-                          if (result != null)  {
-
-                            var pr = Provider.of<RevenueProvider>(context, listen: false);
+                          if (result != null) {
+                            var pr = Provider.of<RevenueProvider>(context,
+                                listen: false);
                             pr.setRevenueList(result.data, notify: false);
 
-                            Navigator.of(context).pushNamed(
-                                '/revenueDetail');
+                            Navigator.of(context).pushNamed('/revenueDetail');
                           }
                         });
-                        // Navigator.of(context).pushNamed(
-                        //     '/revenueDetail');
                       },
-                      child: new Text("Tìm kiếm"),
                       style: ElevatedButton.styleFrom(
                           primary: AppColors.red // This is what you need!
-                          )),
+                          ),
+                      child: const Text("Tìm kiếm",
+                          style: TextStyle(fontSize: 18))),
                 )
               ],
             )));
