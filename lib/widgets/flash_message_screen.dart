@@ -54,27 +54,27 @@ final String _errorTitle,_errorText;
               ),
             )
         ),
-        Positioned(
-            top: -20,
-            left: 0,
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                SvgPicture.asset(
-                  "assets/images/fail.svg",
-                  height: 40,
-                  // color: Color(0xFF801336),
-                ),
-                Positioned(
-                  top: 10,
-                  child:  SvgPicture.asset(
-                    "assets/images/close.svg",
-                    height: 16,
-                    // color: Color(0xFF801336),
-                  ),)
-              ],
-            )
-        )
+        // Positioned(
+        //     top: -20,
+        //     left: 0,
+        //     child: Stack(
+        //       alignment: Alignment.center,
+        //       children: [
+        //         SvgPicture.asset(
+        //           "assets/images/fail.svg",
+        //           height: 40,
+        //           // color: Color(0xFF801336),
+        //         ),
+        //         Positioned(
+        //           top: 10,
+        //           child:  SvgPicture.asset(
+        //             "assets/images/close.svg",
+        //             height: 16,
+        //             // color: Color(0xFF801336),
+        //           ),)
+        //       ],
+        //     )
+        // )
       ],
     );
 

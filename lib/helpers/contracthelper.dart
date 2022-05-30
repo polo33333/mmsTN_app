@@ -17,9 +17,11 @@ class ContractHelper {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String token = prefs.getString(AppConfig.FCM_token) ?? null;
       String rentCode = prefs.getString(AppConfig.RentCode) ?? 'null';
+      String _apiHost = await AppConfig.choseApiHost();
+
       Client client = Client();
       final response = await client.post(
-        AppConfig.kiotForRentGetByRentCode +"?token=" + token,
+        _apiHost + AppConfig.kiotForRentGetByRentCode +"?token=" + token,
         body: {'rentCode': rentCode},
       );
 

@@ -12,9 +12,10 @@ class KiotHelper {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String token = prefs.getString(AppConfig.FCM_token) ?? null;
-      String url = AppConfig.kiotEmpty + marketId.toString() +"?token=" + token;
-      var response = await get(url);
+      String _apiHost = await AppConfig.choseApiHost();
+      String url = _apiHost + AppConfig.kiotEmpty + marketId.toString() +"?token=" + token;
 
+      var response = await get(url);
       if (response.statusCode == 200) {
 
         var body = jsonDecode(response.body);

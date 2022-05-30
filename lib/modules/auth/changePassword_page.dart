@@ -1,10 +1,5 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:mms_1/configs/themes/app_colors.dart';
-
-
-
+import '../../configs/themes/app_colors.dart';
 import '../../widgets/colorLoader.dart';
 
 class ChangePasswordPage extends StatefulWidget {

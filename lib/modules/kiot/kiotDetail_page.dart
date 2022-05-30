@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mms_1/configs/themes/app_colors.dart';
-
+import '../../configs/themes/app_colors.dart';
 import 'package:intl/intl.dart';
 
 class KiotDetailPage extends StatefulWidget {
@@ -21,7 +20,7 @@ class _KiotDetailPageState extends State<KiotDetailPage> {
       appBar: AppBar(
         elevation: 0.1,
         backgroundColor: AppColors.blue_w500,
-        title: Text(
+        title: const Text(
           'Chi tiết điểm kinh doanh',
           style: TextStyle(
             color: Colors.white,
@@ -38,24 +37,24 @@ class _KiotDetailPageState extends State<KiotDetailPage> {
         child: Column(
           children: <Widget>[
             Container(
-              padding: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
+              padding: const EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
               alignment: Alignment.centerLeft,
               child: Text(
                 widget.kiot.kiotName == null ? "" : widget.kiot.kiotName,
-                style: TextStyle(
+                style: const TextStyle(
                     color: AppColors.kPrimaryColor,
                     fontWeight: FontWeight.bold,
                     fontSize: 22),
               ),
             ),
             Container(
-              padding: EdgeInsets.all(10.0),
-              margin: EdgeInsets.fromLTRB(15, 5.0, 15, 5.0),
+              padding: const EdgeInsets.all(10.0),
+              margin: const EdgeInsets.fromLTRB(15, 5.0, 15, 5.0),
               alignment: Alignment.centerLeft,
-              decoration: new BoxDecoration(
+              decoration: const BoxDecoration(
                   color: Colors.blue,
                   borderRadius: BorderRadius.all(Radius.circular(5))),
-              child: Text(
+              child: const Text(
                 "Thông tin chung",
                 style: TextStyle(
                   color: Colors.white,
@@ -66,15 +65,15 @@ class _KiotDetailPageState extends State<KiotDetailPage> {
             ),
             Card(
                 elevation: 8.0,
-                shape: RoundedRectangleBorder(
+                shape: const RoundedRectangleBorder(
                     side: BorderSide(color: Colors.grey, width: 1),
                     borderRadius: BorderRadius.all(Radius.circular(5))),
                 margin:
-                    new EdgeInsets.symmetric(horizontal: 15.0, vertical: 2.0),
+                    const EdgeInsets.symmetric(horizontal: 15.0, vertical: 2.0),
                 child: Container(
-                    decoration: BoxDecoration(color: Colors.white),
+                    decoration: const BoxDecoration(color: Colors.white),
                     child: ListTile(
-                        contentPadding: EdgeInsets.symmetric(
+                        contentPadding: const EdgeInsets.symmetric(
                             horizontal: 20.0, vertical: 10.0),
                         subtitle: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -85,7 +84,7 @@ class _KiotDetailPageState extends State<KiotDetailPage> {
                                   value: widget.kiot.kiotCode == null
                                       ? ""
                                       : widget.kiot.kiotCode),
-                              SizedBox(
+                              const SizedBox(
                                 width: double.infinity,
                                 height: 5,
                               ),
@@ -94,7 +93,7 @@ class _KiotDetailPageState extends State<KiotDetailPage> {
                                   value: widget.kiot.area == null
                                       ? ""
                                       : widget.kiot.area.toString()),
-                              SizedBox(
+                              const SizedBox(
                                 width: double.infinity,
                                 height: 5,
                               ),
@@ -103,7 +102,7 @@ class _KiotDetailPageState extends State<KiotDetailPage> {
                                   value: widget.kiot.regionName == null
                                       ? ""
                                       : widget.kiot.regionName),
-                              SizedBox(
+                              const SizedBox(
                                 width: double.infinity,
                                 height: 5,
                               ),
@@ -112,7 +111,7 @@ class _KiotDetailPageState extends State<KiotDetailPage> {
                                   value: widget.kiot.productGroupName == null
                                       ? ""
                                       : widget.kiot.productGroupName),
-                              SizedBox(
+                              const SizedBox(
                                 width: double.infinity,
                                 height: 5,
                               ),
@@ -121,14 +120,14 @@ class _KiotDetailPageState extends State<KiotDetailPage> {
                                   value: widget.kiot.kiotTypeName == null
                                       ? ""
                                       : widget.kiot.kiotTypeName),
-                              SizedBox(
+                              const SizedBox(
                                 width: double.infinity,
                                 height: 5,
                               ),
                               LineData(
                                   title: "Làm kho: ",
                                   value: widget.kiot.isStore == null? "":  widget.kiot.isStore == true? "Có" : "Không"),
-                              SizedBox(
+                              const SizedBox(
                                 width: double.infinity,
                                 height: 5,
                               ),
@@ -139,13 +138,13 @@ class _KiotDetailPageState extends State<KiotDetailPage> {
                                       : widget.kiot.statusName),
                             ])))),
             Container(
-              padding: EdgeInsets.all(10.0),
-              margin: EdgeInsets.fromLTRB(15, 5.0, 15, 5.0),
+              padding: const EdgeInsets.all(10.0),
+              margin: const EdgeInsets.fromLTRB(15, 5.0, 15, 5.0),
               alignment: Alignment.centerLeft,
-              decoration: new BoxDecoration(
+              decoration: const BoxDecoration(
                   color: Colors.blue,
                   borderRadius: BorderRadius.all(Radius.circular(5))),
-              child: Text(
+              child: const Text(
                 "Quyền sử dụng",
                 style: TextStyle(
                   color: Colors.white,
@@ -156,15 +155,15 @@ class _KiotDetailPageState extends State<KiotDetailPage> {
             ),
             Card(
                 elevation: 8.0,
-                shape: RoundedRectangleBorder(
+                shape: const RoundedRectangleBorder(
                     side: BorderSide(color: Colors.grey, width: 1),
                     borderRadius: BorderRadius.all(Radius.circular(5))),
                 margin:
-                new EdgeInsets.symmetric(horizontal: 15.0, vertical: 2.0),
+                const EdgeInsets.symmetric(horizontal: 15.0, vertical: 2.0),
                 child: Container(
-                    decoration: BoxDecoration(color: Colors.white),
+                    decoration: const BoxDecoration(color: Colors.white),
                     child: ListTile(
-                        contentPadding: EdgeInsets.symmetric(
+                        contentPadding: const EdgeInsets.symmetric(
                             horizontal: 20.0, vertical: 10.0),
                         subtitle: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -175,7 +174,7 @@ class _KiotDetailPageState extends State<KiotDetailPage> {
                                   value: widget.kiot.qSDLicenseNo == null
                                       ? ""
                                       : widget.kiot.qSDLicenseNo.toString()),
-                              SizedBox(
+                              const SizedBox(
                                 width: double.infinity,
                                 height: 5,
                               ),
@@ -191,7 +190,7 @@ class _KiotDetailPageState extends State<KiotDetailPage> {
                                               '[^0-9]'),
                                           '')))).toString(),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: double.infinity,
                                 height: 5,
                               ),
@@ -200,7 +199,7 @@ class _KiotDetailPageState extends State<KiotDetailPage> {
                                   value: widget.kiot.qSDFullName == null
                                       ? ""
                                       : widget.kiot.qSDFullName),
-                              SizedBox(
+                              const SizedBox(
                                 width: double.infinity,
                                 height: 5,
                               ),
@@ -209,7 +208,7 @@ class _KiotDetailPageState extends State<KiotDetailPage> {
                                   value: widget.kiot.qSDIDNo == null
                                       ? ""
                                       : widget.kiot.qSDIDNo.toString()),
-                              SizedBox(
+                              const SizedBox(
                                 width: double.infinity,
                                 height: 5,
                               ),
@@ -218,7 +217,7 @@ class _KiotDetailPageState extends State<KiotDetailPage> {
                                   value: widget.kiot.qSDPhone == null
                                       ? ""
                                       : widget.kiot.qSDPhone),
-                              SizedBox(
+                              const SizedBox(
                                 width: double.infinity,
                                 height: 5,
                               ),
@@ -229,13 +228,13 @@ class _KiotDetailPageState extends State<KiotDetailPage> {
                                       : widget.kiot.qSDAddress),
                             ])))),
             Container(
-              padding: EdgeInsets.all(10.0),
-              margin: EdgeInsets.fromLTRB(15, 5.0, 15, 5.0),
+              padding: const EdgeInsets.all(10.0),
+              margin: const EdgeInsets.fromLTRB(15, 5.0, 15, 5.0),
               alignment: Alignment.centerLeft,
-              decoration: new BoxDecoration(
+              decoration: const BoxDecoration(
                   color: Colors.blue,
-                  borderRadius: BorderRadius.all(Radius.circular(5))),
-              child: Text(
+                  borderRadius: const BorderRadius.all(Radius.circular(5))),
+              child: const Text(
                 "Người kinh doanh",
                 style: TextStyle(
                   color: Colors.white,
@@ -246,15 +245,15 @@ class _KiotDetailPageState extends State<KiotDetailPage> {
             ),
             Card(
                 elevation: 8.0,
-                shape: RoundedRectangleBorder(
+                shape: const RoundedRectangleBorder(
                     side: BorderSide(color: Colors.grey, width: 1),
                     borderRadius: BorderRadius.all(Radius.circular(5))),
                 margin:
-                new EdgeInsets.symmetric(horizontal: 15.0, vertical: 2.0),
+                const EdgeInsets.symmetric(horizontal: 15.0, vertical: 2.0),
                 child: Container(
-                    decoration: BoxDecoration(color: Colors.white),
+                    decoration: const BoxDecoration(color: Colors.white),
                     child: ListTile(
-                        contentPadding: EdgeInsets.symmetric(
+                        contentPadding: const EdgeInsets.symmetric(
                             horizontal: 20.0, vertical: 10.0),
                         subtitle: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -265,7 +264,7 @@ class _KiotDetailPageState extends State<KiotDetailPage> {
                                   value: widget.kiot.nKDFullName == null
                                       ? ""
                                       : widget.kiot.nKDFullName),
-                              SizedBox(
+                              const SizedBox(
                                 width: double.infinity,
                                 height: 5,
                               ),
@@ -274,7 +273,7 @@ class _KiotDetailPageState extends State<KiotDetailPage> {
                                   value: widget.kiot.nKDIDNo == null
                                       ? ""
                                       : widget.kiot.nKDIDNo.toString()),
-                              SizedBox(
+                              const SizedBox(
                                 width: double.infinity,
                                 height: 5,
                               ),
@@ -283,7 +282,7 @@ class _KiotDetailPageState extends State<KiotDetailPage> {
                                   value: widget.kiot.nKDPhone == null
                                       ? ""
                                       : widget.kiot.nKDPhone),
-                              SizedBox(
+                              const SizedBox(
                                 width: double.infinity,
                                 height: 5,
                               ),
@@ -292,7 +291,7 @@ class _KiotDetailPageState extends State<KiotDetailPage> {
                                   value: widget.kiot.nKDAddress == null
                                       ? ""
                                       : widget.kiot.nKDAddress),
-                              SizedBox(
+                              const SizedBox(
                                 width: double.infinity,
                                 height: 5,
                               ),
@@ -301,7 +300,7 @@ class _KiotDetailPageState extends State<KiotDetailPage> {
                                   value: widget.kiot.nKDTaxCode == null
                                       ? ""
                                       : widget.kiot.nKDTaxCode),
-                              SizedBox(
+                              const SizedBox(
                                 width: double.infinity,
                                 height: 5,
                               ),
@@ -329,14 +328,14 @@ class LineData extends StatelessWidget {
         text: TextSpan(children: <TextSpan>[
       TextSpan(
           text: title,
-          style: TextStyle(
+          style: const TextStyle(
             color: AppColors.kPrimaryColor,
             fontSize: 16,
             fontWeight: FontWeight.w500,
           )),
       TextSpan(
           text: value,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.black,
             fontSize: 16,
             fontWeight: FontWeight.w400,

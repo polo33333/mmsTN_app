@@ -1,6 +1,5 @@
-
 import 'package:flutter/foundation.dart';
-import 'package:mms_1/models/revenue.dart';
+import '/models/revenue.dart';
 
 
 class RevenueProvider extends ChangeNotifier {

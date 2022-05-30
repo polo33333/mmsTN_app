@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart';
-import 'package:mms_1/models/master.dart';
+import '../models/master.dart';
 import '../configs/app_config.dart';
 import '../models/httpresponse.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -11,10 +11,10 @@ class MasterHelper {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String token = prefs.getString(AppConfig.FCM_token) ?? null;
+      String _apiHost = await AppConfig.choseApiHost();
+      String url = _apiHost + AppConfig.masterGetAll +"?token=" + token;
 
-      String url = AppConfig.masterGetAll +"?token=" + token;
       var response = await get(url);
-
       if (response.statusCode == 200) {
         var body = jsonDecode(response.body);
         List<Master> master = [];

@@ -1,14 +1,9 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'package:mms_1/configs/themes/app_colors.dart';
+import '../configs/themes/app_colors.dart';
 import 'package:provider/provider.dart';
-import 'package:page_transition/page_transition.dart';
-import '../configs/app_config.dart';
 import '../helpers/contracthelper.dart';
 import '../models/contract.dart';
 import '../provider/contract_provider.dart';
-import 'market/marketDetail_page.dart';
 import 'package:intl/intl.dart';
 
 class ContractPage extends StatefulWidget {
@@ -35,12 +30,6 @@ class _ContracPageState extends State<ContractPage> {
 
   _getPosts({bool refresh = true}) async {
     var provider = Provider.of<ContractProvider>(context, listen: false);
-    // if (!provider.shouldRefresh) {
-    //   _showSnackbar('That\'s it for now!');
-    //   return;
-    // }
-    //if (refresh) _showSnackbar('Loading more...', bgColor: Colors.green);
-
     var postsResponse = await ContractHelper.search();
     if (postsResponse.isSuccessful) {
       if (postsResponse.data.isNotEmpty) {
@@ -73,15 +62,16 @@ class _ContracPageState extends State<ContractPage> {
 
   @override
   Widget build(BuildContext context) {
-    final f = new DateFormat('dd-MM-yyyy');
+    final f = DateFormat('dd-MM-yyyy');
     return Scaffold(
         body: CustomScrollView(slivers: [
       SliverAppBar(
+        backgroundColor: AppColors.blue_w500,
         floating: true,
         pinned: true,
         snap: true,
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'Hợp đồng thuê',
           style: TextStyle(
             color: Colors.white,
@@ -93,6 +83,7 @@ class _ContracPageState extends State<ContractPage> {
         ),
         actions: <Widget>[],
         bottom: AppBar(
+          backgroundColor: AppColors.blue_w500,
           automaticallyImplyLeading: false,
           title: Container(
             width: double.infinity,
@@ -100,14 +91,14 @@ class _ContracPageState extends State<ContractPage> {
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(5)),
             child: TextField(
-              cursorColor: Color(0xFF000000),
+              cursorColor: const Color(0xFF000000),
               onChanged: (value) =>
                   Provider.of<ContractProvider>(context, listen: false)
                       .changeSearchString(value),
               decoration: InputDecoration(
                   prefixIcon: Icon(
                     Icons.search,
-                    color: Color(0xFF000000).withOpacity(0.5),
+                    color: const Color(0xFF000000).withOpacity(0.5),
                   ),
                   hintText: "Nhập mã hợp đồng để tìm kiếm...",
                   border: InputBorder.none),
@@ -118,7 +109,7 @@ class _ContracPageState extends State<ContractPage> {
       SliverFillRemaining(
         child: Consumer<ContractProvider>(
           builder: (_, provider, __) => provider.isContractPageProcessing
-              ? Center(
+              ? const Center(
                   child: CircularProgressIndicator(),
                 )
               : provider.contractListLength > 0
@@ -127,142 +118,132 @@ class _ContracPageState extends State<ContractPage> {
                       child: Column(children: [
                         ListView.builder(
                           shrinkWrap: true,
-                          physics: BouncingScrollPhysics(),
+                          physics: const BouncingScrollPhysics(),
                           scrollDirection: Axis.vertical,
                           controller: _scrollController,
                           itemBuilder: (_, index) {
                             Contract post = provider.getContractByIndex(index);
                             return Card(
                                 elevation: 1.0,
-                                shape: RoundedRectangleBorder(
+                                shape: const RoundedRectangleBorder(
                                     side: BorderSide(
                                         color: Colors.grey, width: 1),
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(5))),
-                                margin: new EdgeInsets.symmetric(
+                                margin: const EdgeInsets.symmetric(
                                     horizontal: 15.0, vertical: 2.0),
-                                child: Container(
-                                    child: ListTile(
-                                        contentPadding: EdgeInsets.symmetric(
-                                            horizontal: 20.0, vertical: 10.0),
-                                        // leading: Icon(
-                                        //   Icons.note_add_sharp,
-                                        //   color: Colors.green,
-                                        //   size: 30.0,
-                                        // ),
-                                        title: LineData(
-                                            title: "Số hợp đồng: ",
-                                            value: post.rentCode),
-                                        subtitle: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: <Widget>[
-                                            SizedBox(
-                                              width: double.infinity,
-                                              height: 5,
-                                            ),
-                                            LineData(
-                                                title: "Chợ: ",
-                                                value: post.marketName),
-                                            SizedBox(
-                                              width: double.infinity,
-                                              height: 5,
-                                            ),
-                                            LineData(
-                                                title: "Thương nhân: ",
-                                                value:
-                                                    post.householdBusinessName),
-                                            SizedBox(
-                                              width: double.infinity,
-                                              height: 5,
-                                            ),
-                                            LineData(
-                                                title: "Ngành hàng: ",
-                                                value: post.productGroupName),
-                                            SizedBox(
-                                              width: double.infinity,
-                                              height: 5,
-                                            ),
-                                            LineData(
-                                                title: "ĐKD: ",
-                                                value: post.kiotName),
-                                            SizedBox(
-                                              width: double.infinity,
-                                              height: 5,
-                                            ),
-                                            LineData(
-                                                title: "Khu vực: ",
-                                                value: post.regionName),
-                                            SizedBox(
-                                              width: double.infinity,
-                                              height: 5,
-                                            ),
-                                            LineData(
-                                                title:
-                                                    "Thời hạn (số tháng thuê): ",
-                                                value: post.qty.toString()),
-                                            SizedBox(
-                                              width: double.infinity,
-                                              height: 5,
-                                            ),
-                                            RichText(
-                                                text: TextSpan(children: <
-                                                    TextSpan>[
-                                              TextSpan(
-                                                  text: "Ngày bắt đầu: ",
-                                                  style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.w500,
-                                                  )),
-                                              TextSpan(
-                                                  text: f.format(DateTime
-                                                      .fromMillisecondsSinceEpoch(
-                                                          int.parse(post
-                                                              .startDate
-                                                              .replaceAll(
-                                                                  RegExp(
-                                                                      '[^0-9]'),
-                                                                  '')))),
-                                                  style: TextStyle(
-                                                    color:
-                                                        AppColors.kPrimaryColor,
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.w400,
-                                                  )),
-                                            ])),
-                                            SizedBox(
-                                              width: double.infinity,
-                                              height: 5,
-                                            ),
-                                            RichText(
-                                                text: TextSpan(children: <
-                                                    TextSpan>[
-                                              TextSpan(
-                                                  text: "Ngày hết hạn: ",
-                                                  style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.w500,
-                                                  )),
-                                              TextSpan(
-                                                  text: f.format(DateTime
-                                                      .fromMillisecondsSinceEpoch(
-                                                          int.parse(post.endDate
-                                                              .replaceAll(
-                                                                  RegExp(
-                                                                      '[^0-9]'),
-                                                                  '')))),
-                                                  style: TextStyle(
-                                                    color:
-                                                        AppColors.kPrimaryColor,
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.w400,
-                                                  )),
-                                            ])),
-                                          ],
-                                        ))));
+                                child: ListTile(
+                                    contentPadding: const EdgeInsets.symmetric(
+                                        horizontal: 20.0, vertical: 10.0),
+                                    // leading: Icon(
+                                    //   Icons.note_add_sharp,
+                                    //   color: Colors.green,
+                                    //   size: 30.0,
+                                    // ),
+                                    title: LineData(
+                                        title: "Số hợp đồng: ",
+                                        value: post.rentCode),
+                                    subtitle: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        const SizedBox(
+                                          width: double.infinity,
+                                          height: 5,
+                                        ),
+                                        LineData(
+                                            title: "Chợ: ",
+                                            value: post.marketName),
+                                        const SizedBox(
+                                          width: double.infinity,
+                                          height: 5,
+                                        ),
+                                        LineData(
+                                            title: "Thương nhân: ",
+                                            value: post.householdBusinessName),
+                                        const SizedBox(
+                                          width: double.infinity,
+                                          height: 5,
+                                        ),
+                                        LineData(
+                                            title: "Ngành hàng: ",
+                                            value: post.productGroupName),
+                                        const SizedBox(
+                                          width: double.infinity,
+                                          height: 5,
+                                        ),
+                                        LineData(
+                                            title: "ĐKD: ",
+                                            value: post.kiotName),
+                                        const SizedBox(
+                                          width: double.infinity,
+                                          height: 5,
+                                        ),
+                                        LineData(
+                                            title: "Khu vực: ",
+                                            value: post.regionName),
+                                        const SizedBox(
+                                          width: double.infinity,
+                                          height: 5,
+                                        ),
+                                        LineData(
+                                            title: "Thời hạn (số tháng thuê): ",
+                                            value: post.qty.toString()),
+                                        const SizedBox(
+                                          width: double.infinity,
+                                          height: 5,
+                                        ),
+                                        RichText(
+                                            text: TextSpan(children: <TextSpan>[
+                                          const TextSpan(
+                                              text: "Ngày bắt đầu: ",
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w500,
+                                              )),
+                                          TextSpan(
+                                              text: f.format(DateTime
+                                                  .fromMillisecondsSinceEpoch(
+                                                      int.parse(post.startDate
+                                                          .replaceAll(
+                                                              RegExp('[^0-9]'),
+                                                              '')))),
+                                              style: const TextStyle(
+                                                color: AppColors.kPrimaryColor,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w400,
+                                              )),
+                                        ])),
+                                        const SizedBox(
+                                          width: double.infinity,
+                                          height: 5,
+                                        ),
+                                        RichText(
+                                            text: TextSpan(children: <TextSpan>[
+                                          const TextSpan(
+                                              text: "Ngày hết hạn: ",
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w500,
+                                              )),
+                                          TextSpan(
+                                              text: f.format(DateTime
+                                                  .fromMillisecondsSinceEpoch(
+                                                      int.parse(post.endDate
+                                                          .replaceAll(
+                                                              RegExp('[^0-9]'),
+                                                              '')))),
+                                              style: const TextStyle(
+                                                color: AppColors.kPrimaryColor,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w400,
+                                              )),
+                                        ])),
+                                      ],
+                                    )));
                           },
                           itemCount: provider.contractListLength,
                         )
@@ -292,14 +273,14 @@ class LineData extends StatelessWidget {
         text: TextSpan(children: <TextSpan>[
       TextSpan(
           text: title,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.black,
             fontSize: 16,
             fontWeight: FontWeight.w500,
           )),
       TextSpan(
           text: value,
-          style: TextStyle(
+          style: const TextStyle(
             color: AppColors.kPrimaryColor,
             fontSize: 16,
             fontWeight: FontWeight.w400,

@@ -1,14 +1,11 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'package:mms_1/configs/app_config.dart';
-import 'package:mms_1/configs/themes/app_colors.dart';
-import 'package:mms_1/helpers/apihelper.dart';
-import 'package:mms_1/helpers/report_helper.dart';
-import 'package:mms_1/models/master.dart';
-import 'package:mms_1/models/market.dart';
-import 'package:mms_1/provider/market_provider.dart';
-import 'package:mms_1/provider/master_provider.dart';
+import '../configs/app_config.dart';
+import '../configs/themes/app_colors.dart';
+import '../helpers/apihelper.dart';
+import '../helpers/report_helper.dart';
+import '../models/master.dart';
+import '../provider/market_provider.dart';
+import '../provider/master_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -56,11 +53,11 @@ class _ReportPageState extends State<ReportPage> {
   void initState() {
     super.initState();
 
-    Future.delayed(Duration(milliseconds: 500), () async {
+    Future.delayed(const Duration(milliseconds: 500), () async {
       _getMarkets(refresh: false);
     });
 
-    Future.delayed(Duration(milliseconds: 100), () {
+    Future.delayed(const Duration(milliseconds: 100), () {
       isLoading = false;
     });
   }
@@ -74,7 +71,7 @@ class _ReportPageState extends State<ReportPage> {
         appBar: AppBar(
           elevation: 0.1,
           backgroundColor: AppColors.blue_w500,
-          title: Text(
+          title: const Text(
             'Phản ánh',
             style: TextStyle(
               color: Colors.white,
@@ -88,73 +85,44 @@ class _ReportPageState extends State<ReportPage> {
           actions: <Widget>[],
         ),
         body: isLoading
-            ? Center(child: CircularProgressIndicator())
+            ? const Center(child: CircularProgressIndicator())
             : SingleChildScrollView(
                 padding: const EdgeInsets.all(10),
                 child: Column(
                   children: [
                     Container(
-                      padding: EdgeInsets.fromLTRB(10.0, 2.0, 10.0, 2.0),
+                      padding: const EdgeInsets.fromLTRB(10.0, 2.0, 10.0, 2.0),
                       alignment: Alignment.centerLeft,
-                      child: Text(
+                      child: const Text(
                         "Chợ",
                         style: TextStyle(color: Colors.black54, fontSize: 14),
                       ),
                     ),
-                    // Container(
-                    //   margin: EdgeInsets.all(5.0),
-                    //   decoration: BoxDecoration(
-                    //       border: Border.all(color: Colors.grey),
-                    //       borderRadius: BorderRadius.circular(5.0)),
-                    //   child: Consumer<MarketProvider>(
-                    //     builder: (_, provider, __) {
-                    //       return DropdownButtonFormField<Market>(
-                    //         decoration: InputDecoration(
-                    //           prefixIcon: Icon(Icons.home),
-                    //         ),
-                    //         icon: Icon(
-                    //           Icons.arrow_drop_down,
-                    //           size: 20.09,
-                    //         ),
-                    //         hint: Text("Vui lòng chọn chợ..."),
-                    //         isExpanded: true,
-                    //         value: provider.currentItemSelect,
-                    //         items: provider.marketList
-                    //             .map<DropdownMenuItem<Market>>((Market market) {
-                    //           return DropdownMenuItem<Market>(
-                    //             value: market,
-                    //             child: Text(market.marketName),
-                    //           );
-                    //         }).toList(),
-                    //       );
-                    //     },
-                    //   ),
-                    // ),
                     Container(
                       width: double.infinity,
                       height: 50,
-                      margin: EdgeInsets.all(5.0),
+                      margin: const EdgeInsets.all(5.0),
                       decoration: BoxDecoration(
                           color: Colors.white,
                           border: Border.all(color: Colors.grey),
                           borderRadius: BorderRadius.circular(5)),
                       child: TextField(
-                        cursorColor: Color(0xFF000000),
+                        cursorColor: const Color(0xFF000000),
                         readOnly: true,
                         decoration: InputDecoration(
                             prefixIcon: Icon(
                               Icons.home,
-                              color: Color(0xFF000000).withOpacity(0.5),
+                              color: const Color(0xFF000000).withOpacity(0.5),
                             ),
                             hintText: provider2.currentItemSelect.marketName,
                             border: InputBorder.none),
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.fromLTRB(10.0, 2.0, 10.0, 2.0),
+                      padding: const EdgeInsets.fromLTRB(10.0, 2.0, 10.0, 2.0),
                       alignment: Alignment.centerLeft,
                       child: RichText(
-                          text: TextSpan(children: <TextSpan>[
+                          text: const TextSpan(children: <TextSpan>[
                         TextSpan(
                             text: "Loại phản ánh ",
                             style: TextStyle(
@@ -172,21 +140,21 @@ class _ReportPageState extends State<ReportPage> {
                       ])),
                     ),
                     Container(
-                      margin: EdgeInsets.all(5.0),
+                      margin: const EdgeInsets.all(5.0),
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.grey),
                           borderRadius: BorderRadius.circular(5.0)),
                       child: Consumer<MasterProvider>(
                         builder: (_, provider2, __) {
                           return DropdownButtonFormField<Master>(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               prefixIcon: Icon(Icons.remove),
                             ),
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.arrow_drop_down,
                               size: 20.09,
                             ),
-                            hint: Text("Vui lòng chọn loại phản ánh..."),
+                            hint: const Text("Vui lòng chọn loại phản ánh..."),
                             isExpanded: true,
                             value: masterValue,
                             onChanged: (Master newValue1) {
@@ -206,93 +174,93 @@ class _ReportPageState extends State<ReportPage> {
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.fromLTRB(10.0, 2.0, 10.0, 2.0),
+                      padding: const EdgeInsets.fromLTRB(10.0, 2.0, 10.0, 2.0),
                       alignment: Alignment.centerLeft,
                       child: RichText(
-                          text: TextSpan(children: <TextSpan>[
-                            TextSpan(
-                                text: "Tiêu đề ",
-                                style: TextStyle(
-                                  color: Colors.black54,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                )),
-                            TextSpan(
-                                text: "(*)",
-                                style: TextStyle(
-                                  color: AppColors.red,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400,
-                                )),
-                          ])),
+                          text: const TextSpan(children: <TextSpan>[
+                        TextSpan(
+                            text: "Tiêu đề ",
+                            style: TextStyle(
+                              color: Colors.black54,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                            )),
+                        TextSpan(
+                            text: "(*)",
+                            style: TextStyle(
+                              color: AppColors.red,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                            )),
+                      ])),
                     ),
                     Container(
                       width: double.infinity,
                       height: 50,
-                      margin: EdgeInsets.all(5.0),
+                      margin: const EdgeInsets.all(5.0),
                       decoration: BoxDecoration(
                           color: Colors.white,
                           border: Border.all(color: Colors.grey),
                           borderRadius: BorderRadius.circular(5)),
                       child: TextField(
                         controller: _title,
-                        cursorColor: Color(0xFF000000),
+                        cursorColor: const Color(0xFF000000),
                         onChanged: (value) => {},
                         decoration: InputDecoration(
                             prefixIcon: Icon(
                               Icons.title,
-                              color: Color(0xFF000000).withOpacity(0.5),
+                              color: const Color(0xFF000000).withOpacity(0.5),
                             ),
                             hintText: "Nhập tiêu đề..",
                             border: InputBorder.none),
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.fromLTRB(10.0, 2.0, 10.0, 2.0),
+                      padding: const EdgeInsets.fromLTRB(10.0, 2.0, 10.0, 2.0),
                       alignment: Alignment.centerLeft,
                       child: RichText(
-                          text: TextSpan(children: <TextSpan>[
-                            TextSpan(
-                                text: "Nội dung phản ánh ",
-                                style: TextStyle(
-                                  color: Colors.black54,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w500,
-                                )),
-                            TextSpan(
-                                text: "(*)",
-                                style: TextStyle(
-                                  color: AppColors.red,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400,
-                                )),
-                          ])),
+                          text: const TextSpan(children: <TextSpan>[
+                        TextSpan(
+                            text: "Nội dung phản ánh ",
+                            style: TextStyle(
+                              color: Colors.black54,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                            )),
+                        TextSpan(
+                            text: "(*)",
+                            style: TextStyle(
+                              color: AppColors.red,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                            )),
+                      ])),
                     ),
                     Container(
                       width: double.infinity,
                       height: 70,
-                      margin: EdgeInsets.all(5.0),
+                      margin: const EdgeInsets.all(5.0),
                       decoration: BoxDecoration(
                           color: Colors.white,
                           border: Border.all(color: Colors.grey),
                           borderRadius: BorderRadius.circular(5)),
                       child: TextField(
                         controller: _content,
-                        cursorColor: Color(0xFF000000),
+                        cursorColor: const Color(0xFF000000),
                         onChanged: (value) => {},
                         decoration: InputDecoration(
                             prefixIcon: Icon(
                               Icons.content_copy,
-                              color: Color(0xFF000000).withOpacity(0.5),
+                              color: const Color(0xFF000000).withOpacity(0.5),
                             ),
                             hintText: "Nhập nội dung phản ánh..",
                             border: InputBorder.none),
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.fromLTRB(10.0, 2.0, 10.0, 2.0),
+                      padding: const EdgeInsets.fromLTRB(10.0, 2.0, 10.0, 2.0),
                       alignment: Alignment.centerLeft,
-                      child: Text(
+                      child: const Text(
                         "Địa chỉ",
                         style: TextStyle(color: Colors.black54, fontSize: 14),
                       ),
@@ -300,28 +268,28 @@ class _ReportPageState extends State<ReportPage> {
                     Container(
                       width: double.infinity,
                       height: 50,
-                      margin: EdgeInsets.all(5.0),
+                      margin: const EdgeInsets.all(5.0),
                       decoration: BoxDecoration(
                           color: Colors.white,
                           border: Border.all(color: Colors.grey),
                           borderRadius: BorderRadius.circular(5)),
                       child: TextField(
                         controller: _address,
-                        cursorColor: Color(0xFF000000),
+                        cursorColor: const Color(0xFF000000),
                         onChanged: (value) => {},
                         decoration: InputDecoration(
                             prefixIcon: Icon(
                               Icons.place,
-                              color: Color(0xFF000000).withOpacity(0.5),
+                              color: const Color(0xFF000000).withOpacity(0.5),
                             ),
                             hintText: "Nhập điểm dịa chỉ..",
                             border: InputBorder.none),
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.fromLTRB(10.0, 2.0, 10.0, 2.0),
+                      padding: const EdgeInsets.fromLTRB(10.0, 2.0, 10.0, 2.0),
                       alignment: Alignment.centerLeft,
-                      child: Text(
+                      child: const Text(
                         "Điện thoại liên lạc",
                         style: TextStyle(color: Colors.black54, fontSize: 14),
                       ),
@@ -329,46 +297,55 @@ class _ReportPageState extends State<ReportPage> {
                     Container(
                       width: double.infinity,
                       height: 50,
-                      margin: EdgeInsets.all(5.0),
+                      margin: const EdgeInsets.all(5.0),
                       decoration: BoxDecoration(
                           color: Colors.white,
                           border: Border.all(color: Colors.grey),
                           borderRadius: BorderRadius.circular(5)),
                       child: TextField(
                         controller: _mobile,
-                        cursorColor: Color(0xFF000000),
+                        cursorColor: const Color(0xFF000000),
                         onChanged: (value) => {},
                         decoration: InputDecoration(
                             prefixIcon: Icon(
                               Icons.phone,
-                              color: Color(0xFF000000).withOpacity(0.5),
+                              color: const Color(0xFF000000).withOpacity(0.5),
                             ),
                             hintText: "Nhập điện thoại liên hệ..",
                             border: InputBorder.none),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: double.infinity,
                       height: 20,
                     ),
                     Container(
                       width: double.infinity,
-                      margin: EdgeInsets.all(5.0),
+                      margin: const EdgeInsets.all(5.0),
                       height: 50,
                       child: ElevatedButton(
                           onPressed: () {
-                            _report
-                                .sendReport(masterValue.masterID, _title.text,
-                                    _content.text, _address.text, _mobile.text)
-                                .then((result) {
-                              print(result);
-                              if (result) _showMaterialDialog();
-                            });
+                            if (_title.text.isNotEmpty &&
+                                _content.text.isNotEmpty &&
+                                masterValue != null) {
+                              _report
+                                  .sendReport(
+                                      masterValue.masterID,
+                                      _title.text,
+                                      _content.text,
+                                      _address.text,
+                                      _mobile.text)
+                                  .then((result) {
+                                if (result) _showMaterialDialog();
+                              });
+                            } else {
+                              _showMaterialDialog_2();
+                            }
                           },
-                          child: new Text("Gửi phản ánh"),
                           style: ElevatedButton.styleFrom(
                               primary: AppColors.red // This is what you need!
-                              )),
+                              ),
+                          child: const Text("Gửi phản ánh")),
                     )
                   ],
                 )));
@@ -379,15 +356,39 @@ class _ReportPageState extends State<ReportPage> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Text('Thông báo'),
-            content: Text('Gửi phản ánh thành công!'),
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10.0))),
+            title: const Text('Thông báo'),
+            content: const Text('Gửi phản ánh thành công!'),
             actions: <Widget>[
               TextButton(
                   onPressed: () {
                     Navigator.of(context).pushNamedAndRemoveUntil(
                         '/home', (Route<dynamic> route) => false);
                   },
-                  child: Text('Close')),
+                  child: const Text('Close')),
+            ],
+          );
+        });
+  }
+
+  void _showMaterialDialog_2() {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10.0))),
+            title: const Text('Thông báo'),
+            content: const Text(
+                'Vui lòng điền  các thông tin bắc buộc trước khi gửi phản ánh!'),
+            actions: <Widget>[
+              TextButton(
+              onPressed: () {
+                Navigator.of(context, rootNavigator: true).pop();
+              },
+                  child: const Text('Close')
+              ),
             ],
           );
         });

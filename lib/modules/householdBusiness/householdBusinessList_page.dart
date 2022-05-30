@@ -1,8 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:mms_1/configs/themes/app_colors.dart';
-import 'package:mms_1/models/market.dart';
+import '../../configs/themes/app_colors.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import '../../configs/app_config.dart';

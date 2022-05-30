@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart';
-import 'package:mms_1/models/revenue.dart';
+import '../models/revenue.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../configs/app_config.dart';
 import '../models/httpresponse.dart';
@@ -18,10 +18,10 @@ class RevenueHelper {
       String token = prefs.getString(AppConfig.FCM_token) ?? null;
       int householdBusinessId = prefs.getInt('HouseholdBusinessId') ?? 0;
       int marketId = prefs.getInt(AppConfig.MarketId) ?? 0;
-
+      String _apiHost = await AppConfig.choseApiHost();
 
       final response = await client.post(
-        AppConfig.URL_REVENUESEARCH +"?token=" + token,
+        _apiHost + AppConfig.URL_REVENUESEARCH +"?token=" + token,
         body: {'month': month.toString(), 'year': year.toString(), 'HouseholdBusinessId':  householdBusinessId.toString() , 'marketId': marketId.toString()},
       );
 

@@ -1,9 +1,5 @@
-import 'dart:collection';
-
 import 'package:flutter/foundation.dart';
-import 'package:mms_1/models/master.dart';
-
-import '../models/contract.dart';
+import '/models/master.dart';
 
 class MasterProvider extends ChangeNotifier {
   bool _isMasterPageProcessing = true;

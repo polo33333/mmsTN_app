@@ -1,9 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:mms_1/configs/themes/app_colors.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import '../../configs/app_config.dart';
+import '../../configs/themes/app_colors.dart';
 import '../../helpers/kiot_helper.dart';
 import '../../models/kiot.dart';
 import '../../provider/kiot_provider.dart';
@@ -48,11 +47,12 @@ class _KiotListPageState extends State<KiotListPage> {
     return Scaffold(
         body: CustomScrollView(slivers: [
           SliverAppBar(
+            backgroundColor: AppColors.blue_w500,
             floating: true,
             pinned: true,
             snap: true,
             centerTitle: true,
-            title: Text(
+            title: const Text(
               'Điểm kinh doanh trống',
               style: TextStyle(
                 color: Colors.white,
@@ -62,8 +62,9 @@ class _KiotListPageState extends State<KiotListPage> {
                 letterSpacing: 1.0,
               ),
             ),
-            actions: <Widget>[],
+            actions: const <Widget>[],
             bottom: AppBar(
+              backgroundColor: AppColors.blue_w500,
               automaticallyImplyLeading: false,
               title: Container(
                 width: double.infinity,
@@ -71,14 +72,14 @@ class _KiotListPageState extends State<KiotListPage> {
                 decoration: BoxDecoration(
                     color: Colors.white, borderRadius: BorderRadius.circular(5)),
                 child: TextField(
-                  cursorColor: Color(0xFF000000),
+                  cursorColor: const Color(0xFF000000),
                   onChanged: (value) =>
                       Provider.of<KiotProvider>(context, listen: false)
                           .changeSearchString(value),
                   decoration: InputDecoration(
                       prefixIcon: Icon(
                         Icons.search,
-                        color: Color(0xFF000000).withOpacity(0.5),
+                        color: const Color(0xFF000000).withOpacity(0.5),
                       ),
                       hintText: "Nhập tên điểm kinh doanh để tìm kiếm...",
                       border: InputBorder.none),
@@ -89,7 +90,7 @@ class _KiotListPageState extends State<KiotListPage> {
           SliverFillRemaining(
             child: Consumer<KiotProvider>(
               builder: (_, provider, __) => provider.isKiotPageProcessing
-                  ? Center(
+                  ? const Center(
                 child: CircularProgressIndicator(),
               )
                   : provider.kiotListLength > 0
@@ -98,41 +99,40 @@ class _KiotListPageState extends State<KiotListPage> {
                   child: Column(children: [
                     ListView.builder(
                       shrinkWrap: true,
-                      physics: BouncingScrollPhysics(),
+                      physics: const BouncingScrollPhysics(),
                       scrollDirection: Axis.vertical,
                       controller: _scrollController,
                       itemBuilder: (_, index) {
                         Kiot post = provider.getKiotByIndex(index);
                         return Card(
                             elevation: 1.0,
-                            margin: new EdgeInsets.symmetric(
+                            margin: const EdgeInsets.symmetric(
                                 horizontal: 15.0, vertical: 6.0),
-                            child: Container(
-                                child: ListTile(
-                                  contentPadding: EdgeInsets.symmetric(
-                                      horizontal: 20.0, vertical: 10.0),
-                                  leading: Icon(
-                                    Icons.place,
-                                    color: Colors.green,
-                                    size: 30.0,
-                                  ),
-                                  title: Text(
-                                    post.kiotName,
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 18),
-                                  ), //element['group'] group name get
-                                  trailing: Icon(Icons.arrow_forward),
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      PageTransition(
-                                          type:
-                                          PageTransitionType.rightToLeft,
-                                          child: KiotDetailPage(kiot: post)),
-                                    );
-                                  },
-                                )));
+                            child: ListTile(
+                              contentPadding: const EdgeInsets.symmetric(
+                                  horizontal: 20.0, vertical: 10.0),
+                              leading: const Icon(
+                                Icons.place,
+                                color: Colors.green,
+                                size: 30.0,
+                              ),
+                              title: Text(
+                                post.kiotName,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 18),
+                              ), //element['group'] group name get
+                              trailing: const Icon(Icons.arrow_forward),
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  PageTransition(
+                                      type:
+                                      PageTransitionType.rightToLeft,
+                                      child: KiotDetailPage(kiot: post)),
+                                );
+                              },
+                            ));
                       },
                       itemCount: provider.kiotListLength,
                     )

@@ -12,9 +12,10 @@ class ReportRepos {
     String token = prefs.getString(AppConfig.FCM_token) ?? null;
     int householdBusinessId = prefs.getInt('HouseholdBusinessId') ?? 0;
     int marketId = prefs.getInt('MarketID') ?? 0;
+    String _apiHost = await AppConfig.choseApiHost();
 
     final response = await client.post(
-      AppConfig.URL_SENDREPORT +"?token=" + token,
+      _apiHost + AppConfig.URL_SENDREPORT +"?token=" + token,
       body: {'typeId': typeId.toString(),'marketId': marketId.toString() ,'title': title, 'content': content, 'address': address, 'mobile': mobile,'HouseholdBusinessId':  householdBusinessId.toString() },
     );
     Map<String, dynamic> mapResponse = json.decode(response.body);

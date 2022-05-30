@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
-import 'package:mms_1/models/householdBusiness.dart';
+import '../models/householdBusiness.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../configs/app_config.dart';
 
@@ -12,9 +12,10 @@ class AuthRepos {
   Future<bool> signIn(String name, String pass) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     //String token = prefs.getString(AppConfig.FCM_token) ?? 'null';
+    String _apiHost = await AppConfig.choseApiHost();
 
     final response = await client.post(
-      AppConfig.URL_SIGNIN,
+      _apiHost + AppConfig.URL_SIGNIN,
       body: {'name': name, 'pass': pass},
     );
     Map<String, dynamic> mapResponse = json.decode(response.body);
@@ -23,7 +24,7 @@ class AuthRepos {
 
       if (mapResponse["isSuccess"] == true) {
         prefs.setInt('HouseholdBusinessId', mapResponse["HouseholdBusinessId"]);
-        print( mapResponse["HouseholdBusinessId"]);
+        // print( mapResponse["HouseholdBusinessId"]);
         prefs.setString('HouseholdBusinessName', mapResponse["HouseholdBusinessName"]);
         prefs.setString('RentCode', mapResponse["RentCode"]);
         prefs.setInt('KiotForRentID', mapResponse["KiotForRentID"]);
@@ -31,7 +32,7 @@ class AuthRepos {
         prefs.setString('LOGIN','YES');
         prefs.setString(AppConfig.FCM_token, mapResponse["token"]);
         print('SignIn:  Success to sign in');
-        print(mapResponse["token"]);
+        // print(mapResponse["token"]);
         return true;
       }
       print('SignIn:  Faile to sign in');
@@ -48,9 +49,10 @@ class AuthRepos {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     //String _auth = prefs.getString('LOGIN') ?? 'NO';
     String token = prefs.getString(AppConfig.FCM_token) ?? null;
+    String _apiHost = await AppConfig.choseApiHost();
 
     if (token != null) {
-      final response = await client.get(AppConfig.URL_VERIFY +"?token=" + token);
+      final response = await client.get(_apiHost + AppConfig.URL_VERIFY +"?token=" + token);
       Map<String, dynamic> mapResponse = json.decode(response.body);
       if (response.statusCode == 200) {
         if (mapResponse["isSuccess"] == true) {
@@ -84,9 +86,10 @@ class AuthRepos {
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String token = prefs.getString(AppConfig.FCM_token)??null;
+    String _apiHost = await AppConfig.choseApiHost();
 
     final response = await client.post(
-      AppConfig.URL_CHANGEPASSWORD,
+      _apiHost + AppConfig.URL_CHANGEPASSWORD,
       body: {'rePassWord': rePass, 'pass': pass, 'token': token},
     );
 
@@ -111,9 +114,10 @@ class AuthRepos {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String token = prefs.getString(AppConfig.FCM_token)??null;
     int householdBusinessId = prefs.getInt('HouseholdBusinessId') ?? 0;
+    String _apiHost = await AppConfig.choseApiHost();
 
     final response =
-    await client.get(AppConfig.URL_GETINFOHOUSEHOLDBUSINESS+ householdBusinessId.toString() +"?token=" + token);
+    await client.get(_apiHost + AppConfig.URL_GETINFOHOUSEHOLDBUSINESS+ householdBusinessId.toString() +"?token=" + token);
     if (response.statusCode == 200) {
       //throw Exception('Failed to load TestAssignment');
       return HouseholdBusiness.fromJson(json.decode(response.body));

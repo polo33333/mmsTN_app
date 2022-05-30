@@ -1,14 +1,13 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:mms_1/configs/themes/app_colors.dart';
+import '../../configs/themes/app_colors.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import '../../configs/app_config.dart';
 import '../../helpers/apihelper.dart';
 import '../../models/market.dart';
 import '../../provider/market_provider.dart';
-import '../auth/account_page.dart';
 import 'marketDetail_page.dart';
 
 class MarketPage extends StatefulWidget {

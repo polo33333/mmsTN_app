@@ -3,15 +3,15 @@ import 'dart:ui';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mms_1/configs/app_config.dart';
-import 'package:mms_1/configs/themes/app_colors.dart';
-import 'package:mms_1/helpers/apihelper.dart';
-import 'package:mms_1/helpers/master_helper.dart';
-import 'package:mms_1/modules/contract_page.dart';
-import 'package:mms_1/modules/feedback_page.dart';
-import 'package:mms_1/modules/revenue/revenueSearch_page.dart';
-import 'package:mms_1/provider/market_provider.dart';
-import 'package:mms_1/provider/master_provider.dart';
+import '../configs/app_config.dart';
+import '../configs/themes/app_colors.dart';
+import '../helpers/apihelper.dart';
+import '../helpers/master_helper.dart';
+import '../modules/contract_page.dart';
+import '../modules/feedback_page.dart';
+import '../modules/revenue/revenueSearch_page.dart';
+import '../provider/market_provider.dart';
+import '../provider/master_provider.dart';
 import 'package:page_transition/page_transition.dart';
 import 'kiot/kiot_selectMarket.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -27,9 +27,9 @@ final List<String> imgList = [
 final List<Widget> imageSliders = imgList
     .map((item) => Container(
   child: Container(
-    margin: EdgeInsets.all(5.0),
+    margin: const EdgeInsets.all(5.0),
     child: ClipRRect(
-        borderRadius: BorderRadius.all(Radius.circular(5.0)),
+        borderRadius: const BorderRadius.all(Radius.circular(5.0)),
         child: Stack(
           children: <Widget>[
             Image.asset(item, fit: BoxFit.cover, width: 1000.0),
@@ -38,7 +38,7 @@ final List<Widget> imageSliders = imgList
               left: 0.0,
               right: 0.0,
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
                       Color.fromARGB(200, 0, 0, 0),
@@ -48,7 +48,7 @@ final List<Widget> imageSliders = imgList
                     end: Alignment.topCenter,
                   ),
                 ),
-                padding: EdgeInsets.symmetric(
+                padding: const EdgeInsets.symmetric(
                     vertical: 10.0, horizontal: 20.0),
                 // child: Text(
                 //   'No. ${imgList.indexOf(item)} image',
@@ -139,79 +139,48 @@ class _HomeScreenState extends State<HomeScreen> {
     final double widthScreen = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(65.0),
+        preferredSize: const Size.fromHeight(65.0),
         child: AppBar(
           backgroundColor: Colors.green,
           title: Container(
-              padding: EdgeInsets.all(5),
+              padding: const EdgeInsets.all(5),
               child: Row(children: [
-                Container(
-                  child:
-                  // Container(
-                  //   width: 80,
-                  //   height: 80,
-                  //   color: Colors.transparent,
-                  //   child: Image.asset('assets/images/img.png'),
-                  // ),
-                  CircleAvatar(
-                    backgroundColor: Colors.green,
-                    radius: 20.0,
-                    child: Icon(
-                      Icons.account_circle,
-                      color: Colors.white,
-                      size: 40,
-                    ),
+                const CircleAvatar(
+                  backgroundColor: Colors.green,
+                  radius: 20.0,
+                  child: Icon(
+                    Icons.account_circle,
+                    color: Colors.white,
+                    size: 40,
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.all(5),
+                  margin: const EdgeInsets.all(5),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Container(
-                      //   child: Text(
-                      //     "Xin chào",
-                      //     style: TextStyle(
-                      //       color: Colors.white.withOpacity(0.9),
-                      //       fontWeight: FontWeight.w500,
-                      //       fontSize: 14,
-                      //     ),
-                      //   ),
-                      // ),
                       FutureBuilder<dynamic>(
                           future: _getUserName(),
                           builder: (BuildContext context,
                               AsyncSnapshot<dynamic> snapshot) {
-                            if (snapshot.hasData)
-                              return Container(
-                                child: Text(
-                                  "Welcome, " + snapshot.data,
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 18),
-                                ),
-                              );
-
-                            return Container(
-                              child: Text(
-                                "Welcome",
-                                style: TextStyle(
+                            if (snapshot.hasData) {
+                              return Text(
+                                "Welcome, " + snapshot.data,
+                                style: const TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w500,
                                     fontSize: 18),
-                              ),
+                              );
+                            }
+
+                            return const Text(
+                              "Welcome",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 18),
                             );
                           }),
-                      // Container(
-                      //   child: Text(''
-                      //       ,
-                      //     style: TextStyle(
-                      //         color: Colors.white,
-                      //         fontWeight: FontWeight.bold,
-                      //         fontSize: 18),
-                      //   ),
-                      // ),
                     ],
                   ),
                 ),
@@ -223,9 +192,10 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const SizedBox(height: 10,),
             Container(
               alignment: Alignment.topCenter,
-              padding: EdgeInsets.fromLTRB(15, 5, 15, 0),
+              padding: const EdgeInsets.fromLTRB(15, 5, 15, 0),
               child: CarouselSlider(
                 options: CarouselOptions(
                   viewportFraction: 1,
@@ -237,10 +207,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 items: imageSliders,
               ),
             ),
+            const SizedBox(height: 10,),
             Container(
                 alignment: Alignment.topLeft,
-                margin: EdgeInsets.fromLTRB(15, 5, 15, 5),
-                child: Text(
+                margin: const EdgeInsets.fromLTRB(15, 5, 15, 5),
+                child: const Text(
                   'Danh mục',
                   style: TextStyle(
                       color: Colors.black,
@@ -251,15 +222,15 @@ class _HomeScreenState extends State<HomeScreen> {
               color: Colors.white,
               height: bodyHeight / 5 * 3,
               child: Container(
-                padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 1.0),
-                margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 1.0),
+                margin: const EdgeInsets.fromLTRB(5, 5, 5, 5),
                 child: GridView.count(
                   crossAxisCount: 2,
                   childAspectRatio:
                   (2 * widthScreen + 10) / (1 * bodyHeight + 10),
-                  padding: EdgeInsets.all(3),
+                  padding: const EdgeInsets.all(3),
                   scrollDirection: Axis.vertical,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   children: <Widget>[
                     makeDashboardItem("Điểm kinh doanh trống", Icons.place,
                         Colors.green, KiotSelectMarketScreen()),
@@ -288,18 +259,19 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         //backgroundColor: Colors.white,
-          items: [
+          items: const [
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.home,
                 size: 30,
               ),
-              title: Text("Trang chủ",
-                style: TextStyle(
-                  //fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              label: "Trang chủ",
+              // title: Text("Trang chủ",
+              //   style: TextStyle(
+              //     //fontSize: 18,
+              //     fontWeight: FontWeight.bold,
+              //   ),
+              // ),
             ),
             // BottomNavigationBarItem(
             //   icon: Icon(Icons.notifications,size: 30),
@@ -307,12 +279,13 @@ class _HomeScreenState extends State<HomeScreen> {
             // ),
             BottomNavigationBarItem(
               icon: Icon(Icons.settings, size: 30),
-              title: Text("Cài đặt",
-                style: TextStyle(
-                  //fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              label: "Cài đặt",
+              // title: Text("Cài đặt",
+              //   style: TextStyle(
+              //     //fontSize: 18,
+              //     fontWeight: FontWeight.bold,
+              //   ),
+              // ),
             )
           ],
           currentIndex: _selectedIndex,
@@ -323,8 +296,9 @@ class _HomeScreenState extends State<HomeScreen> {
             switch (index) {
               case 0:
                 {
-                  if (_selectedIndex != 0)
+                  if (_selectedIndex != 0) {
                     Navigator.pushNamed(context, "/home");
+                  }
                   break;
                 }
             // case 1:
@@ -341,7 +315,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget makeDashboardItem(
       String title, IconData icon, Color colorBox, Widget router) {
     return Container(
-      margin: EdgeInsets.all(8),
+      margin: const EdgeInsets.all(8),
       child: InkWell(
         child: Container(
           decoration: BoxDecoration(
@@ -382,11 +356,12 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         onTap: () {
-          if (router != null)
+          if (router != null) {
             Navigator.push(
                 context,
                 PageTransition(
                     type: PageTransitionType.rightToLeft, child: router));
+          }
         },
       ),
     );

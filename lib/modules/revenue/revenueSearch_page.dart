@@ -147,7 +147,7 @@ class _RevenuePageState extends State<RevenuePage> {
                 ),
                 const SizedBox(
                   width: double.infinity,
-                  height: 20,
+                  height: 60,
                 ),
                 Container(
                   width: double.infinity,
@@ -167,7 +167,7 @@ class _RevenuePageState extends State<RevenuePage> {
                         });
                       },
                       style: ElevatedButton.styleFrom(
-                          primary: AppColors.red // This is what you need!
+                          primary: AppColors.blue_w500 // This is what you need!
                           ),
                       child: const Text("Tìm kiếm",
                           style: TextStyle(fontSize: 18))),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mms_1/configs/themes/app_colors.dart';
+import '../configs/themes/app_colors.dart';
 import 'package:page_transition/page_transition.dart';
-
 import '../helpers/Auth_helper.dart';
 import 'about_page.dart';
 import 'auth/account_page.dart';
@@ -32,7 +31,7 @@ class _SettingState extends State<SettingPage> {
         elevation: 0.1,
         backgroundColor: AppColors.blue_w500,
         centerTitle:true,
-        title: Text(
+        title: const Text(
           'Cài đặt',
           style: TextStyle(
             color: Colors.white,
@@ -43,69 +42,63 @@ class _SettingState extends State<SettingPage> {
           ),
         ),
         //centerTitle: true ,
-        actions: <Widget>[
-//          IconButton(
-//            icon: Icon(Icons.list),
-//            onPressed: () {},
-//          )
+        actions: const <Widget>[
         ],
       ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            SizedBox(
-              height: 30,
+            const SizedBox(
+              height: 20,
             ),
-            Container(
-              child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, child: AccountPage()));
-                    //Navigator.pushNamed(context, '/account');
-                  },
-                  child: Card(
-                    elevation: 8.0,
-                    margin: new EdgeInsets.symmetric(
-                        horizontal: 15.0, vertical: 6.0),
-                    child: Container(
-                      decoration:
-                      BoxDecoration(color: Colors.white),
-                      child: ListTile(
-                          contentPadding: EdgeInsets.symmetric(
-                              horizontal: 20.0, vertical: 10.0),
-                          leading: Container(
-                            padding: EdgeInsets.only(right: 12.0),
-                            decoration: new BoxDecoration(
-                                border: new Border(
-                                    right: new BorderSide(
-                                        width: 1.0, color: Colors.white24))),
-                            child: CircleAvatar(
-                              radius: 25.0,
-                              child: Icon(
-                                Icons.account_circle,
-                                color: Colors.yellow,
-                                size: 45.0,
-                              ),
+            GestureDetector(
+                onTap: () {
+                  Navigator.push(context, PageTransition(type: PageTransitionType.rightToLeft, child: AccountPage()));
+                  //Navigator.pushNamed(context, '/account');
+                },
+                child: Card(
+                  elevation: 8.0,
+                  margin: const EdgeInsets.symmetric(
+                      horizontal: 15.0, vertical: 6.0),
+                  child: Container(
+                    decoration:
+                    const BoxDecoration(color: Colors.white),
+                    child: ListTile(
+                        contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 20.0, vertical: 10.0),
+                        leading: Container(
+                          padding: const EdgeInsets.only(right: 12.0),
+                          decoration: const BoxDecoration(
+                              border: Border(
+                                  right: BorderSide(
+                                      width: 1.0, color: Colors.white24))),
+                          child: const CircleAvatar(
+                            radius: 25.0,
+                            child: Icon(
+                              Icons.account_circle,
+                              color: Colors.yellow,
+                              size: 45.0,
                             ),
                           ),
-                          title: Text(
-                            "Tài khoản",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          subtitle: Row(
-                            children: <Widget>[
-                              Text("Tình trạng: Hoạt động",
-                                  style: TextStyle(
-                                      color: Colors.black.withOpacity(.5),
-                                      fontSize: 13.0)),
-                            ],
-                          ),
-                          trailing: Icon(Icons.keyboard_arrow_right,
-                              color: Colors.black, size: 30.0)),
-                    ),
-                  )),
-            ),
+                        ),
+                        title: const Text(
+                          "Tài khoản",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w500),
+                        ),
+                        subtitle: Row(
+                          children: <Widget>[
+                            Text("Tình trạng: Hoạt động",
+                                style: TextStyle(
+                                    color: Colors.black.withOpacity(.5),
+                                    fontSize: 13.0)),
+                          ],
+                        ),
+                        trailing: const Icon(Icons.keyboard_arrow_right,
+                            color: Colors.black, size: 30.0)),
+                  ),
+                )),
             // Container(
             //   padding: EdgeInsets.all(10.0),
             //   alignment: Alignment.centerLeft,
@@ -148,7 +141,7 @@ class _SettingState extends State<SettingPage> {
             //   ),
             // ),
             Container(
-              padding: EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(10.0),
               alignment: Alignment.centerLeft,
               child: Text(
                 "Hệ thống",
@@ -165,16 +158,16 @@ class _SettingState extends State<SettingPage> {
               child: Card(
                 elevation: 8.0,
                 margin:
-                new EdgeInsets.symmetric(horizontal: 15.0, vertical: 6.0),
+                const EdgeInsets.symmetric(horizontal: 15.0, vertical: 6.0),
                 child: Container(
                   decoration:
-                  BoxDecoration(color: Colors.white),
+                  const BoxDecoration(color: Colors.white),
                   child: ListTile(
                     contentPadding:
-                    EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                    const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
                     leading: Container(
-                      padding: EdgeInsets.only(right: 12.0),
-                      child: CircleAvatar(
+                      padding: const EdgeInsets.only(right: 12.0),
+                      child: const CircleAvatar(
                         backgroundColor: Colors.grey,
                         radius: 25.0,
                         child: Icon(
@@ -184,13 +177,13 @@ class _SettingState extends State<SettingPage> {
                         ),
                       ),
                     ),
-                    title: Text(
+                    title: const Text(
                       "Thông tin phần mềm",
                       style: TextStyle(
-                          color: Colors.black, fontWeight: FontWeight.bold),
+                          color: Colors.black, fontWeight: FontWeight.w500),
                     ),
                     // subtitle: Text("Intermediate", style: TextStyle(color: Colors.white)),
-                    trailing: Icon(Icons.keyboard_arrow_right,
+                    trailing: const Icon(Icons.keyboard_arrow_right,
                         color: Colors.black, size: 30.0),
                   ),
                 ),
@@ -238,16 +231,16 @@ class _SettingState extends State<SettingPage> {
               child: Card(
                 elevation: 8.0,
                 margin:
-                new EdgeInsets.symmetric(horizontal: 15.0, vertical: 6.0),
+                const EdgeInsets.symmetric(horizontal: 15.0, vertical: 6.0),
                 child: Container(
                   decoration:
-                  BoxDecoration(color: Colors.white),
+                  const BoxDecoration(color: Colors.white),
                   child: ListTile(
-                      contentPadding: EdgeInsets.symmetric(
+                      contentPadding: const EdgeInsets.symmetric(
                           horizontal: 20.0, vertical: 10.0),
                       leading: Container(
-                        padding: EdgeInsets.only(right: 12.0),
-                        child: CircleAvatar(
+                        padding: const EdgeInsets.only(right: 12.0),
+                        child: const CircleAvatar(
                           backgroundColor: Colors.deepOrangeAccent,
                           radius: 25.0,
                           child: Icon(
@@ -257,19 +250,19 @@ class _SettingState extends State<SettingPage> {
                           ),
                         ),
                       ),
-                      title: Text(
+                      title: const Text(
                         "Đăng xuất",
                         style: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.bold),
+                            color: Colors.black, fontWeight: FontWeight.w500),
                       ),
                       // subtitle: Text("Intermediate", style: TextStyle(color: Colors.white)),
-                      trailing: Icon(Icons.keyboard_arrow_right,
+                      trailing: const Icon(Icons.keyboard_arrow_right,
                           color: Colors.black, size: 30.0)),
                 ),
               ),
             ),
             Container(
-              padding: EdgeInsets.all(30.0),
+              padding: const EdgeInsets.all(30.0),
               alignment: Alignment.bottomCenter,
               child: Text(
                 'Version: v1.0',
@@ -285,20 +278,21 @@ class _SettingState extends State<SettingPage> {
 
   void _signOut() {
     _scaffoldKey.currentState.showSnackBar(SnackBar(
-      content: Text(
+      content: const Text(
         'Bạn có chắc chắn muốn đăng xuất?',
         style: TextStyle(color: Colors.white),
       ),
-      duration: Duration(seconds: 9),
+      duration: const Duration(seconds: 9),
       backgroundColor: Colors.red,
       action: SnackBarAction(
           label: 'OK',
           textColor: Colors.white,
           onPressed: () {
             _auth.signOut().then((result) {
-              if (result)
+              if (result) {
                 Navigator.of(context).pushNamedAndRemoveUntil(
-                    '/login', (Route<dynamic> route) => false);
+                    '/onboarding', (Route<dynamic> route) => false);
+              }
               setState(() {
                 //someVal = result;
               });
@@ -314,8 +308,10 @@ class _SettingState extends State<SettingPage> {
         context: context,
         builder: (BuildContext ctx) {
           return AlertDialog(
-            title: Text('Đăng xuất',
-                style: TextStyle(fontWeight: FontWeight.bold)),
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10.0))),
+            title: const Text('Đăng xuất',
+                style: TextStyle(fontWeight: FontWeight.w500)),
             content: const Text('Bạn có muốn đăng xuất tài khoản?'),
             actions: [
               TextButton(
@@ -328,9 +324,10 @@ class _SettingState extends State<SettingPage> {
               TextButton(
                   onPressed: () {
                     _auth.signOut().then((result) {
-                      if (result)
+                      if (result) {
                         Navigator.of(context).pushNamedAndRemoveUntil(
-                            '/login', (Route<dynamic> route) => false);
+                            '/onboarding', (Route<dynamic> route) => false);
+                      }
                       setState(() {
                         //someVal = result;
                       });

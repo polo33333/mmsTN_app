@@ -1,9 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:mms_1/configs/themes/app_colors.dart';
+import '../configs/themes/app_colors.dart';
 import '../widgets/colorLoader.dart';
-
 import '../helpers/Auth_helper.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -41,7 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
         } else
           Timer(Duration(seconds: 3), () {
             Navigator.of(context).pushNamedAndRemoveUntil(
-                '/login', (Route<dynamic> route) => false);
+                '/onboarding', (Route<dynamic> route) => false);
           });
       });
     });

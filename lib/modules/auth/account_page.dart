@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mms_1/configs/themes/app_colors.dart';
-import 'package:mms_1/helpers/Auth_helper.dart';
-import 'package:mms_1/models/householdBusiness.dart';
+import '../../configs/themes/app_colors.dart';
+import '../../helpers/Auth_helper.dart';
+import '../../models/householdBusiness.dart';
 
 class AccountPage extends StatefulWidget {
   @override

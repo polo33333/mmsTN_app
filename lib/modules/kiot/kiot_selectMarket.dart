@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:mms_1/configs/app_config.dart';
-import 'package:mms_1/configs/themes/app_colors.dart';
-import 'package:mms_1/helpers/apihelper.dart';
-import 'package:mms_1/models/market.dart';
-import 'package:mms_1/provider/market_provider.dart';
+import '../../configs/app_config.dart';
+import '../../configs/themes/app_colors.dart';
+import '../../helpers/apihelper.dart';
+import '../../models/market.dart';
+import '../../provider/market_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:page_transition/page_transition.dart';
-
 import 'kiotList_page.dart';
 
 class KiotSelectMarketScreen extends StatefulWidget {

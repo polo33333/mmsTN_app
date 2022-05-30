@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:mms_1/configs/app_config.dart';
-import 'package:mms_1/configs/themes/app_colors.dart';
-import 'package:mms_1/helpers/revenue_helper.dart';
-import 'package:mms_1/models/revenue.dart';
-import 'package:mms_1/provider/revenue_provider.dart';
+import '../../configs/themes/app_colors.dart';
+import '../../models/revenue.dart';
+import '../../provider/revenue_provider.dart';
 import 'package:provider/provider.dart';
 
 class RevenueDetailPage extends StatefulWidget {
