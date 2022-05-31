@@ -75,102 +75,104 @@ class _SelectDistrictPageState extends State<SelectDistrictPage> {
                 ),
               ),
             ),
-            const Spacer(),
-            Container(
-              margin: const EdgeInsets.all(15),
-              padding: const EdgeInsets.symmetric(
-                horizontal: 5,
-                vertical: 5 / 4, // 5 top and bottom
-              ),
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.4),
-                border: Border.all(color: Colors.grey, width: 1),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: TextField(
-                controller: _controller,
-                onChanged: onSearchTextChanged,
-                decoration: const InputDecoration(
-                  focusedBorder: InputBorder.none,
-                  enabledBorder: InputBorder.none,
-                  icon: Icon(
-                    Icons.search,
-                    color: Colors.grey,
-                    size: 30.0,
-                  ),
-                  hintText: 'Tìm kiếm quận của bạn',
-                  hintStyle: TextStyle(color: Colors.grey),
-                ),
-              ),
-            ),
+            // const Spacer(),
+            // Container(
+            //   margin: const EdgeInsets.all(15),
+            //   padding: const EdgeInsets.symmetric(
+            //     horizontal: 5,
+            //     vertical: 5 / 4, // 5 top and bottom
+            //   ),
+            //   decoration: BoxDecoration(
+            //     color: Colors.white.withOpacity(0.4),
+            //     border: Border.all(color: Colors.grey, width: 1),
+            //     borderRadius: BorderRadius.circular(12),
+            //   ),
+            //   child: TextField(
+            //     controller: _controller,
+            //     onChanged: onSearchTextChanged,
+            //     decoration: const InputDecoration(
+            //       focusedBorder: InputBorder.none,
+            //       enabledBorder: InputBorder.none,
+            //       icon: Icon(
+            //         Icons.search,
+            //         color: Colors.grey,
+            //         size: 30.0,
+            //       ),
+            //       hintText: 'Tìm kiếm quận của bạn',
+            //       hintStyle: TextStyle(color: Colors.grey),
+            //     ),
+            //   ),
+            // ),
             const SizedBox(
-              height: 16,
+              height: 30,
             ),
             SizedBox(
                 height: defaultLoginSize / 5 * 3,
-                child: _searchResult.length != 0 ||
-                        _controller.text.isNotEmpty
-                    ? ListView.builder(
-                        physics: const BouncingScrollPhysics(),
-                        itemCount: _searchResult.length,
-                        itemBuilder: (context, index) {
-                          return Container(
-                            decoration: BoxDecoration(
-                              color: _searchResult[index].isSelected == true
-                                  ? Colors.green
-                                  : Colors.white,
-                              border: Border.all(
-                                color: Colors.grey,
-                                width: 1,
-                              ),
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-                            margin: const EdgeInsets.fromLTRB(15, 5, 15, 5),
-                            height: 50,
-                            width: MediaQuery.of(context).size.width * 0.8,
-                            child: InkWell(
-                              onTap: () => {
-                                setState(() {
-                                  _searchResult.forEach((element) {
-                                    element.isSelected = false;
-                                  });
-                                  _districtList.forEach((el) {
-                                    el.isSelected = false;
-                                    if (el.id == _searchResult[index].id)
-                                      el.isSelected = true;
-                                  });
-                                  _searchResult[index].isSelected = true;
-                                })
-                              },
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    _searchResult[index].name,
-                                    style: TextStyle(
-                                      color:
-                                          _searchResult[index].isSelected ==
-                                                  true
-                                              ? Colors.white
-                                              : Colors.black,
-                                    ),
-                                  ),
-                                  _searchResult[index].isSelected == true
-                                      ? const Icon(
-                                          Icons.check_circle_outline,
-                                          color: Colors.white,
-                                        )
-                                      : Container(),
-                                ],
-                              ),
-                            ),
-                          );
-                        },
-                      )
-                    : ListView.builder(
+                child:
+                // _searchResult.length != 0 ||
+                //         _controller.text.isNotEmpty
+                //     ? ListView.builder(
+                //         physics: const BouncingScrollPhysics(),
+                //         itemCount: _searchResult.length,
+                //         itemBuilder: (context, index) {
+                //           return Container(
+                //             decoration: BoxDecoration(
+                //               color: _searchResult[index].isSelected == true
+                //                   ? Colors.green
+                //                   : Colors.white,
+                //               border: Border.all(
+                //                 color: Colors.grey,
+                //                 width: 1,
+                //               ),
+                //               borderRadius: BorderRadius.circular(12),
+                //             ),
+                //             padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+                //             margin: const EdgeInsets.fromLTRB(15, 5, 15, 5),
+                //             height: 50,
+                //             width: MediaQuery.of(context).size.width * 0.8,
+                //             child: InkWell(
+                //               onTap: () => {
+                //                 setState(() {
+                //                   _searchResult.forEach((element) {
+                //                     element.isSelected = false;
+                //                   });
+                //                   _districtList.forEach((el) {
+                //                     el.isSelected = false;
+                //                     if (el.id == _searchResult[index].id)
+                //                       el.isSelected = true;
+                //                   });
+                //                   _searchResult[index].isSelected = true;
+                //                 })
+                //               },
+                //               child: Row(
+                //                 crossAxisAlignment: CrossAxisAlignment.center,
+                //                 mainAxisAlignment:
+                //                     MainAxisAlignment.spaceBetween,
+                //                 children: [
+                //                   Text(
+                //                     _searchResult[index].name,
+                //                     style: TextStyle(
+                //                       color:
+                //                           _searchResult[index].isSelected ==
+                //                                   true
+                //                               ? Colors.white
+                //                               : Colors.black,
+                //                     ),
+                //                   ),
+                //                   _searchResult[index].isSelected == true
+                //                       ? const Icon(
+                //                           Icons.check_circle_outline,
+                //                           color: Colors.white,
+                //                         )
+                //                       : Container(),
+                //                 ],
+                //               ),
+                //             ),
+                //           );
+                //         },
+                //       )
+                //     :
+                ListView.builder(
                         physics: const BouncingScrollPhysics(),
                         itemCount: _districtList.length,
                         itemBuilder: (context, index) {

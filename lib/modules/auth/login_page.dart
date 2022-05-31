@@ -127,7 +127,7 @@ class _LoginScreenState extends State<LoginPage> {
                                 child: Container(
                                   margin: EdgeInsets.fromLTRB(15,5,15,0),
                                   child: Text(
-                                    "Mã hợp đồng",
+                                    "Số hợp đồng",
                                     style: TextStyle(
                                         fontWeight: FontWeight.w500,
                                         fontSize: 16,
@@ -155,7 +155,7 @@ class _LoginScreenState extends State<LoginPage> {
                                       Icons.lock,
                                       color: AppColors.blue_w500,
                                     ),
-                                    hintText: 'Nhập mã hợp đồng',
+                                    hintText: 'Nhập số hợp đồng',
                                     hintStyle: TextStyle(fontSize: 14.0, color: Colors.grey),
                                     border: InputBorder.none,
                                   ),

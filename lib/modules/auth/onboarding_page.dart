@@ -52,7 +52,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             Container(
               padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
               child: const Text(
-                  "Hỗ trợ quản lý - tra cứu thông tin tổng quát của chợ, hợp đồng, điểm kinh doanh, thương nhân...",
+                  "Quản lý và tra cứu thông tin hợp đồng, điểm kinh doanh trống, các khoản nộp, ghi nhận phản ánh.",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     height: 2,
