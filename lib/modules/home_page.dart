@@ -227,7 +227,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: GridView.count(
                   crossAxisCount: 2,
                   childAspectRatio:
-                  (2 * widthScreen + 10) / (1 * bodyHeight + 10),
+                  (2 * widthScreen + 50) / (1 * bodyHeight + 10),
                   padding: const EdgeInsets.all(3),
                   scrollDirection: Axis.vertical,
                   physics: const NeverScrollableScrollPhysics(),
@@ -315,9 +315,10 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget makeDashboardItem(
       String title, IconData icon, Color colorBox, Widget router) {
     return Container(
-      margin: const EdgeInsets.all(8),
       child: InkWell(
         child: Container(
+          margin: const EdgeInsets.all(5),
+          padding: const EdgeInsets.all(5),
           decoration: BoxDecoration(
             color: colorBox,
             borderRadius: BorderRadius.circular(12),
@@ -338,7 +339,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: const EdgeInsets.all(8),
                 child: Icon(
                   icon,
-                  size: 50.0,
+                  size: 40.0,
                   color: Colors.white,
                 ),
               ),
@@ -346,7 +347,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 //color: Colors.green,
                 alignment: Alignment.center,
                 width: double.infinity,
-                height: 30,
+                height: 50,
                 child: Text(
                   title,
                   style: const TextStyle(fontSize: 16, color: Colors.white),

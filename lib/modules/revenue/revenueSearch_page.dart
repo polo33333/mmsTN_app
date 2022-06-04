@@ -52,6 +52,8 @@ class _RevenuePageState extends State<RevenuePage> {
   @override
   Widget build(BuildContext context) {
     //final f = new DateFormat('dd-MM-yyyy');
+    Size size = MediaQuery.of(context).size;
+    final height = MediaQuery.of(context).size.height;
     return Scaffold(
         key: _globalKey,
         appBar: AppBar(
@@ -72,107 +74,108 @@ class _RevenuePageState extends State<RevenuePage> {
         ),
         body: SingleChildScrollView(
             padding: const EdgeInsets.all(10),
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 40,
-                ),
-                Container(
-                  padding: const EdgeInsets.fromLTRB(10.0, 2.0, 10.0, 2.0),
-                  alignment: Alignment.centerLeft,
-                  child: const Text(
-                    "Tháng",
-                    style: TextStyle(color: Colors.black54, fontSize: 14),
+            child: SizedBox(
+              width: double.infinity,
+              height: size.height - (size.height * 0.2),
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 40,
                   ),
-                ),
-                Container(
-                  margin: const EdgeInsets.all(5.0),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(5.0)),
-                  child: DropdownButtonFormField<String>(
-                      decoration: const InputDecoration(
-                        prefixIcon: Icon(Icons.calendar_today),
-                      ),
-                      icon: const Icon(
-                        Icons.arrow_drop_down,
-                        size: 20.09,
-                      ),
-                      isExpanded: false,
-                      value: _month,
-                      items: _monthList.map((String val) {
-                        return DropdownMenuItem<String>(
-                          value: val,
-                          child: Text(val),
-                        );
-                      }).toList(),
-                      onChanged: (newVal) {
-                        _month = newVal;
-                        setState(() {});
-                      }),
-                ),
-                Container(
-                  padding: const EdgeInsets.fromLTRB(10.0, 2.0, 10.0, 2.0),
-                  alignment: Alignment.centerLeft,
-                  child: const Text(
-                    "Năm",
-                    style: TextStyle(color: Colors.black54, fontSize: 14),
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(10.0, 2.0, 10.0, 2.0),
+                    alignment: Alignment.centerLeft,
+                    child: const Text(
+                      "Tháng",
+                      style: TextStyle(color: Colors.black54, fontSize: 14),
+                    ),
                   ),
-                ),
-                Container(
-                  margin: const EdgeInsets.all(5.0),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(5.0)),
-                  child: DropdownButtonFormField<String>(
-                      decoration: const InputDecoration(
-                        prefixIcon: Icon(Icons.calendar_today),
-                      ),
-                      icon: const Icon(
-                        Icons.arrow_drop_down,
-                        size: 20.09,
-                      ),
-                      isExpanded: true,
-                      value: _year,
-                      items: _yearList.map((String val) {
-                        return DropdownMenuItem<String>(
-                          value: val,
-                          child: Text(val),
-                        );
-                      }).toList(),
-                      onChanged: (newVal) {
-                        _year = newVal;
-                        setState(() {});
-                      }),
-                ),
-                const SizedBox(
-                  width: double.infinity,
-                  height: 60,
-                ),
-                Container(
-                  width: double.infinity,
-                  margin: const EdgeInsets.all(5.0),
-                  height: 50,
-                  child: ElevatedButton(
-                      onPressed: () {
-                        _revenue.Search(int.parse(_month), int.parse(_year))
-                            .then((result) {
-                          if (result != null) {
-                            var pr = Provider.of<RevenueProvider>(context,
-                                listen: false);
-                            pr.setRevenueList(result.data, notify: false);
+                  Container(
+                    margin: const EdgeInsets.all(5.0),
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(5.0)),
+                    child: DropdownButtonFormField<String>(
+                        decoration: const InputDecoration(
+                          prefixIcon: Icon(Icons.calendar_today),
+                        ),
+                        icon: const Icon(
+                          Icons.arrow_drop_down,
+                          size: 20.09,
+                        ),
+                        isExpanded: false,
+                        value: _month,
+                        items: _monthList.map((String val) {
+                          return DropdownMenuItem<String>(
+                            value: val,
+                            child: Text(val),
+                          );
+                        }).toList(),
+                        onChanged: (newVal) {
+                          _month = newVal;
+                          setState(() {});
+                        }),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(10.0, 2.0, 10.0, 2.0),
+                    alignment: Alignment.centerLeft,
+                    child: const Text(
+                      "Năm",
+                      style: TextStyle(color: Colors.black54, fontSize: 14),
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.all(5.0),
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(5.0)),
+                    child: DropdownButtonFormField<String>(
+                        decoration: const InputDecoration(
+                          prefixIcon: Icon(Icons.calendar_today),
+                        ),
+                        icon: const Icon(
+                          Icons.arrow_drop_down,
+                          size: 20.09,
+                        ),
+                        isExpanded: true,
+                        value: _year,
+                        items: _yearList.map((String val) {
+                          return DropdownMenuItem<String>(
+                            value: val,
+                            child: Text(val),
+                          );
+                        }).toList(),
+                        onChanged: (newVal) {
+                          _year = newVal;
+                          setState(() {});
+                        }),
+                  ),
+                  const Spacer(),
+                  Container(
+                    width: double.infinity,
+                    margin: const EdgeInsets.all(5.0),
+                    height: 50,
+                    child: ElevatedButton(
+                        onPressed: () {
+                          _revenue.Search(int.parse(_month), int.parse(_year))
+                              .then((result) {
+                            if (result != null) {
+                              var pr = Provider.of<RevenueProvider>(context,
+                                  listen: false);
+                              pr.setRevenueList(result.data, notify: false);
 
-                            Navigator.of(context).pushNamed('/revenueDetail');
-                          }
-                        });
-                      },
-                      style: ElevatedButton.styleFrom(
-                          primary: AppColors.blue_w500 // This is what you need!
-                          ),
-                      child: const Text("Tìm kiếm",
-                          style: TextStyle(fontSize: 18))),
-                )
-              ],
+                              Navigator.of(context).pushNamed('/revenueDetail');
+                            }
+                          });
+                        },
+                        style: ElevatedButton.styleFrom(
+                            primary: AppColors.blue_w500 // This is what you need!
+                            ),
+                        child: const Text("Tìm kiếm",
+                            style: TextStyle(fontSize: 18))),
+                  )
+                ],
+              ),
             )));
   }
 }
