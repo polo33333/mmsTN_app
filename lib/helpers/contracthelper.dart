@@ -17,12 +17,13 @@ class ContractHelper {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String token = prefs.getString(AppConfig.FCM_token) ?? null;
       String rentCode = prefs.getString(AppConfig.RentCode) ?? 'null';
+            int householdBusinessId = prefs.getInt(AppConfig.HouseholdBusinessId) ?? 0;
       String _apiHost = await AppConfig.choseApiHost();
 
       Client client = Client();
       final response = await client.post(
         _apiHost + AppConfig.kiotForRentGetByRentCode +"?token=" + token,
-        body: {'rentCode': rentCode},
+        body: {'rentCode': rentCode, 'householdBusinessId': householdBusinessId.toString()},
       );
 
       if (response.statusCode == 200) {

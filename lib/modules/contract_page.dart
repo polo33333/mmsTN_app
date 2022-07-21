@@ -166,82 +166,187 @@ class _ContracPageState extends State<ContractPage> {
                                           width: double.infinity,
                                           height: 5,
                                         ),
+                                        // LineData(
+                                        //     title: "Ngành hàng: ",
+                                        //     value: post.productGroupName),
+                                        // const SizedBox(
+                                        //   width: double.infinity,
+                                        //   height: 5,
+                                        // ),
                                         LineData(
-                                            title: "Ngành hàng: ",
-                                            value: post.productGroupName),
-                                        const SizedBox(
-                                          width: double.infinity,
-                                          height: 5,
-                                        ),
-                                        LineData(
-                                            title: "ĐKD: ",
-                                            value: post.kiotName),
-                                        const SizedBox(
-                                          width: double.infinity,
-                                          height: 5,
-                                        ),
-                                        LineData(
-                                            title: "Khu vực: ",
-                                            value: post.regionName),
-                                        const SizedBox(
-                                          width: double.infinity,
-                                          height: 5,
-                                        ),
-                                        LineData(
-                                            title: "Thời hạn (số tháng thuê): ",
-                                            value: post.qty.toString()),
-                                        const SizedBox(
-                                          width: double.infinity,
-                                          height: 5,
-                                        ),
-                                        RichText(
-                                            text: TextSpan(children: <TextSpan>[
-                                          const TextSpan(
-                                              text: "Ngày bắt đầu: ",
-                                              style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w500,
-                                              )),
-                                          TextSpan(
-                                              text: f.format(DateTime
-                                                  .fromMillisecondsSinceEpoch(
-                                                      int.parse(post.startDate
-                                                          .replaceAll(
-                                                              RegExp('[^0-9]'),
-                                                              '')))),
-                                              style: const TextStyle(
-                                                color: AppColors.kPrimaryColor,
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w400,
-                                              )),
-                                        ])),
-                                        const SizedBox(
-                                          width: double.infinity,
-                                          height: 5,
-                                        ),
-                                        RichText(
-                                            text: TextSpan(children: <TextSpan>[
-                                          const TextSpan(
-                                              text: "Ngày hết hạn: ",
-                                              style: TextStyle(
-                                                color: Colors.black,
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w500,
-                                              )),
-                                          TextSpan(
-                                              text: f.format(DateTime
-                                                  .fromMillisecondsSinceEpoch(
-                                                      int.parse(post.endDate
-                                                          .replaceAll(
-                                                              RegExp('[^0-9]'),
-                                                              '')))),
-                                              style: const TextStyle(
-                                                color: AppColors.kPrimaryColor,
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w400,
-                                              )),
-                                        ])),
+                                            title: "Danh sách ĐKD: ",
+                                            value: ''),
+                                        post.dSDKD.length > 0
+                                            ? ListView.builder(
+                                                physics:
+                                                    const ClampingScrollPhysics(),
+                                                //scrollDirection: Axis.horizontal,
+                                                shrinkWrap: true,
+                                                itemCount: post.dSDKD.length,
+                                                itemBuilder: (context, index) {
+                                                  return Column(
+                                                    mainAxisSize: MainAxisSize.max,
+                                                    crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                    children: <Widget>[
+                                                      const Divider(
+                                                        height: 10,
+                                                        thickness: 2,
+                                                        indent: 0,
+                                                        endIndent: 0,
+                                                        color: Colors.green,
+                                                      ),
+                                                      LineDataSub(
+                                                          title: "ĐKD: ",
+                                                          value: post
+                                                                      .dSDKD[
+                                                                          index]
+                                                                      .kiotName ==
+                                                                  null
+                                                              ? ""
+                                                              : post
+                                                                  .dSDKD[index]
+                                                                  .kiotName),
+                                                      const SizedBox(
+                                                        width: double.infinity,
+                                                        height: 5,
+                                                      ),
+                                                      LineDataSub(
+                                                          title: "Khu vực: ",
+                                                          value: post
+                                                              .dSDKD[
+                                                          index]
+                                                              .regionName ==
+                                                              null
+                                                              ? ""
+                                                              : post
+                                                              .dSDKD[index]
+                                                              .regionName),
+                                                      const SizedBox(
+                                                        width: double.infinity,
+                                                        height: 5,
+                                                      ),
+                                                      LineDataSub(
+                                                          title: "Thời hạn (số tháng thuê): ",
+                                                          value: post
+                                                              .dSDKD[
+                                                          index]
+                                                              .qty ==
+                                                              null
+                                                              ? ""
+                                                              : post
+                                                              .dSDKD[index]
+                                                              .qty.toString()),
+                                                      const SizedBox(
+                                                        width: double.infinity,
+                                                        height: 5,
+                                                      ),
+                                                      RichText(
+                                                          text: TextSpan(children: <TextSpan>[
+                                                        const TextSpan(
+                                                            text: "Ngày bắt đầu: ",
+                                                            style: TextStyle(
+                                                              color: Colors.black54,
+                                                              fontSize: 16,
+                                                              fontWeight: FontWeight.w500,
+                                                            )),
+                                                        TextSpan(
+                                                            text: post
+                                                                .dSDKD[index].startDate != null ? f.format(DateTime
+                                                                .fromMillisecondsSinceEpoch(
+                                                                    int.parse(post
+                                                                        .dSDKD[index].startDate
+                                                                        .replaceAll(
+                                                                            RegExp('[^0-9]'),
+                                                                            '')))) : '',
+                                                            style: const TextStyle(
+                                                              color: AppColors.kPrimaryColor,
+                                                              fontSize: 16,
+                                                              fontWeight: FontWeight.w400,
+                                                            )),
+                                                      ])),
+                                                      const SizedBox(
+                                                        width: double.infinity,
+                                                        height: 5,
+                                                      ),
+                                                      RichText(
+                                                          text: TextSpan(children: <TextSpan>[
+                                                        const TextSpan(
+                                                            text: "Ngày hết hạn: ",
+                                                            style: TextStyle(
+                                                              color: Colors.black54,
+                                                              fontSize: 16,
+                                                              fontWeight: FontWeight.w500,
+                                                            )),
+                                                        TextSpan(
+                                                            text: post
+                                                                .dSDKD[index].endDate!= null? f.format(DateTime
+                                                                .fromMillisecondsSinceEpoch(
+                                                                    int.parse(post
+                                                                        .dSDKD[index].endDate
+                                                                        .replaceAll(
+                                                                            RegExp('[^0-9]'),
+                                                                            '')))): '',
+                                                            style: const TextStyle(
+                                                              color: AppColors.kPrimaryColor,
+                                                              fontSize: 16,
+                                                              fontWeight: FontWeight.w400,
+                                                            )),
+                                                      ])),
+                                                    ],
+                                                  );
+                                                },
+                                              )
+                                            : const Text(''),
+
+                                        // RichText(
+                                        //     text: TextSpan(children: <TextSpan>[
+                                        //   const TextSpan(
+                                        //       text: "Ngày bắt đầu: ",
+                                        //       style: TextStyle(
+                                        //         color: Colors.black,
+                                        //         fontSize: 16,
+                                        //         fontWeight: FontWeight.w500,
+                                        //       )),
+                                        //   TextSpan(
+                                        //       text: post.startDate != null ? f.format(DateTime
+                                        //           .fromMillisecondsSinceEpoch(
+                                        //               int.parse(post.startDate
+                                        //                   .replaceAll(
+                                        //                       RegExp('[^0-9]'),
+                                        //                       '')))) : '',
+                                        //       style: const TextStyle(
+                                        //         color: AppColors.kPrimaryColor,
+                                        //         fontSize: 16,
+                                        //         fontWeight: FontWeight.w400,
+                                        //       )),
+                                        // ])),
+                                        // const SizedBox(
+                                        //   width: double.infinity,
+                                        //   height: 5,
+                                        // ),
+                                        // RichText(
+                                        //     text: TextSpan(children: <TextSpan>[
+                                        //   const TextSpan(
+                                        //       text: "Ngày hết hạn: ",
+                                        //       style: TextStyle(
+                                        //         color: Colors.black,
+                                        //         fontSize: 16,
+                                        //         fontWeight: FontWeight.w500,
+                                        //       )),
+                                        //   TextSpan(
+                                        //       text: post.endDate!= null? f.format(DateTime
+                                        //           .fromMillisecondsSinceEpoch(
+                                        //               int.parse(post.endDate
+                                        //                   .replaceAll(
+                                        //                       RegExp('[^0-9]'),
+                                        //                       '')))): '',
+                                        //       style: const TextStyle(
+                                        //         color: AppColors.kPrimaryColor,
+                                        //         fontSize: 16,
+                                        //         fontWeight: FontWeight.w400,
+                                        //       )),
+                                        // ])),
                                       ],
                                     )));
                           },
@@ -286,5 +391,33 @@ class LineData extends StatelessWidget {
             fontWeight: FontWeight.w400,
           )),
     ]));
+  }
+}
+
+
+class LineDataSub extends StatelessWidget {
+  LineDataSub({this.title, this.value});
+  final String title;
+  final String value;
+
+  @override
+  Widget build(BuildContext context) {
+    return RichText(
+        text: TextSpan(children: <TextSpan>[
+          TextSpan(
+              text: title,
+              style: const TextStyle(
+                color: Colors.black54,
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+              )),
+          TextSpan(
+              text: value,
+              style: const TextStyle(
+                color: AppColors.kPrimaryColor,
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+              )),
+        ]));
   }
 }

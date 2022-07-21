@@ -28,6 +28,7 @@ class AppConfig {
   //key
   static final FCM_token = 'FCM_TOKEN';
   static final RentCode = 'RentCode';
+  static final HouseholdBusinessId = 'HouseholdBusinessId';
   static final MarketId = 'MarketID';
   static final districtId = 'DISTRICTID';
   static final login = 'NO';
@@ -43,7 +44,7 @@ class AppConfig {
         id: 2,
         name: 'Quận Bình Thạnh',
         isSelected: false,
-        url: "http://103.226.248.147:90/api/v1"));
+        url: "http://113.161.75.86:33335/api/v1"));
     return _districtList;
   }
 
